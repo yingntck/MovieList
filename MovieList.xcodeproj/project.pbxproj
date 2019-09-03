@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,6 +32,8 @@
 		55D0EE54231E0BD9003FA995 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE53231E0BD9003FA995 /* Main.storyboard */; };
 		55D0EE59231E0D0F003FA995 /* star-tap.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE57231E0D0E003FA995 /* star-tap.png */; };
 		55D0EE5A231E0D0F003FA995 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE58231E0D0F003FA995 /* star.png */; };
+		55D0EE5C231E252B003FA995 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EE5B231E252B003FA995 /* MovieModel.swift */; };
+		55D0EE5E231E26EC003FA995 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EE5D231E26EC003FA995 /* DetailModel.swift */; };
 		CA803052859426D35CF84BE7 /* Pods_MovieList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 689FEFA59493C02723D50B70 /* Pods_MovieList.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,8 @@
 		55D0EE53231E0BD9003FA995 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		55D0EE57231E0D0E003FA995 /* star-tap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-tap.png"; sourceTree = "<group>"; };
 		55D0EE58231E0D0F003FA995 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		55D0EE5B231E252B003FA995 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		55D0EE5D231E26EC003FA995 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		689FEFA59493C02723D50B70 /* Pods_MovieList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C6EC17EB4E4598505B0CBEF /* Pods-MovieList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieList.release.xcconfig"; path = "Target Support Files/Pods-MovieList/Pods-MovieList.release.xcconfig"; sourceTree = "<group>"; };
 		F7AA0BE530BE0AB62379CF0E /* Pods-MovieList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieList.debug.xcconfig"; path = "Target Support Files/Pods-MovieList/Pods-MovieList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,7 +90,6 @@
 				F7AA0BE530BE0AB62379CF0E /* Pods-MovieList.debug.xcconfig */,
 				6C6EC17EB4E4598505B0CBEF /* Pods-MovieList.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -158,6 +161,8 @@
 		55D0EE25231D2B32003FA995 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				55D0EE5B231E252B003FA995 /* MovieModel.swift */,
+				55D0EE5D231E26EC003FA995 /* DetailModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 				55D0EE44231D2BD6003FA995 /* DetailRouter.swift in Sources */,
 				55D0EE35231D2BA8003FA995 /* MainModels.swift in Sources */,
 				55D0EE42231D2BD6003FA995 /* DetailPresenter.swift in Sources */,
+				55D0EE5C231E252B003FA995 /* MovieModel.swift in Sources */,
 				55D0EE32231D2BA8003FA995 /* MainPresenter.swift in Sources */,
 				55D0EE33231D2BA8003FA995 /* MainWorker.swift in Sources */,
 				55D0EE11231D2A78003FA995 /* AppDelegate.swift in Sources */,
@@ -355,6 +361,7 @@
 				55D0EE41231D2BD6003FA995 /* DetailStore.swift in Sources */,
 				55D0EE46231D2BD6003FA995 /* DetailViewController.swift in Sources */,
 				55D0EE43231D2BD6003FA995 /* DetailWorker.swift in Sources */,
+				55D0EE5E231E26EC003FA995 /* DetailModel.swift in Sources */,
 				55D0EE48231D2BD6003FA995 /* DetailEntity.swift in Sources */,
 				55D0EE38231D2BA8003FA995 /* MainEntity.swift in Sources */,
 				55D0EE47231D2BD6003FA995 /* DetailInteractor.swift in Sources */,
