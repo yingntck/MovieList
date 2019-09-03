@@ -28,6 +28,10 @@
 		55D0EE48231D2BD6003FA995 /* DetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EE40231D2BD6003FA995 /* DetailEntity.swift */; };
 		55D0EE4F231D2CEF003FA995 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EE4D231D2CEF003FA995 /* MovieCell.swift */; };
 		55D0EE50231D2CEF003FA995 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE4E231D2CEF003FA995 /* MovieCell.xib */; };
+		55D0EE52231E0BC3003FA995 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE51231E0BC3003FA995 /* Detail.storyboard */; };
+		55D0EE54231E0BD9003FA995 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE53231E0BD9003FA995 /* Main.storyboard */; };
+		55D0EE59231E0D0F003FA995 /* star-tap.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE57231E0D0E003FA995 /* star-tap.png */; };
+		55D0EE5A231E0D0F003FA995 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE58231E0D0F003FA995 /* star.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,10 @@
 		55D0EE40231D2BD6003FA995 /* DetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEntity.swift; sourceTree = "<group>"; };
 		55D0EE4D231D2CEF003FA995 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		55D0EE4E231D2CEF003FA995 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
+		55D0EE51231E0BC3003FA995 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		55D0EE53231E0BD9003FA995 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		55D0EE57231E0D0E003FA995 /* star-tap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-tap.png"; sourceTree = "<group>"; };
+		55D0EE58231E0D0F003FA995 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +111,7 @@
 				55D0EE25231D2B32003FA995 /* Model */,
 				55D0EE24231D2B26003FA995 /* Store */,
 				55D0EE23231D2B20003FA995 /* Worker */,
+				55D0EE55231E0CC5003FA995 /* Resource */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -132,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				55D0EE28231D2B58003FA995 /* Cell */,
+				55D0EE53231E0BD9003FA995 /* Main.storyboard */,
 				55D0EE2E231D2BA8003FA995 /* MainViewController.swift */,
 				55D0EE2F231D2BA8003FA995 /* MainInteractor.swift */,
 				55D0EE2A231D2BA8003FA995 /* MainPresenter.swift */,
@@ -147,6 +157,7 @@
 		55D0EE27231D2B47003FA995 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				55D0EE51231E0BC3003FA995 /* Detail.storyboard */,
 				55D0EE3E231D2BD6003FA995 /* DetailViewController.swift */,
 				55D0EE3F231D2BD6003FA995 /* DetailInteractor.swift */,
 				55D0EE3A231D2BD6003FA995 /* DetailPresenter.swift */,
@@ -166,6 +177,23 @@
 				55D0EE4E231D2CEF003FA995 /* MovieCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		55D0EE55231E0CC5003FA995 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				55D0EE56231E0CFB003FA995 /* Image */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		55D0EE56231E0CFB003FA995 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				55D0EE57231E0D0E003FA995 /* star-tap.png */,
+				55D0EE58231E0D0F003FA995 /* star.png */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,8 +255,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				55D0EE50231D2CEF003FA995 /* MovieCell.xib in Resources */,
+				55D0EE54231E0BD9003FA995 /* Main.storyboard in Resources */,
 				55D0EE1B231D2A79003FA995 /* LaunchScreen.storyboard in Resources */,
+				55D0EE59231E0D0F003FA995 /* star-tap.png in Resources */,
+				55D0EE5A231E0D0F003FA995 /* star.png in Resources */,
 				55D0EE18231D2A79003FA995 /* Assets.xcassets in Resources */,
+				55D0EE52231E0BC3003FA995 /* Detail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
