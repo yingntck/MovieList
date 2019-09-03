@@ -11,23 +11,21 @@ import Alamofire
 
 struct Main {
   /// This structure represents a use case
-  struct Something {
+  struct GetMovieList {
     /// Data struct sent to Interactor
     struct Request {}
     /// Data struct sent to Presenter
     struct Response {
-      let result: [MovieModel]
+      let result: Result<[MovieModel]>
     }
     /// Data struct sent to ViewController
     struct ViewModel {
-      let content: [DisplayMovie]
-      struct DisplayMovie {
-        let title: String
-        let popularity: Double
-        let voteCount: Int
-        let voteAverage: Int
-        let imageURL: String
-      }
+      let title: String
+      let popularity: Double
+      let voteCount: Int
+      let voteAverage: Double
+      let imageURL: String
+      let backdropURL: String
     }
   }
 }

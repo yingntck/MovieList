@@ -9,18 +9,29 @@
 import UIKit
 
 protocol MainPresenterInterface {
-  func presentSomething(response: Main.Something.Response)
+  func presentMovieList(response: Main.GetMovieList.Response)
 }
 
 class MainPresenter: MainPresenterInterface {
+  
   weak var viewController: MainViewControllerInterface!
-
+  
   // MARK: - Presentation logic
-
-  func presentSomething(response: Main.Something.Response) {
-    // NOTE: Format the response from the Interactor and pass the result back to the View Controller. The resulting view model should be using only primitive types. Eg: the view should not need to involve converting date object into a formatted string. The formatting is done here.
-
-    let viewModel = Main.Something.ViewModel()
-    viewController.displaySomething(viewModel: viewModel)
+  func presentMovieList(response: Main.GetMovieList.Response) {
+    var viewModel: [Main.GetMovieList.ViewModel] = []
+    switch response.result {
+    case .success(let data):
+      viewModel = data.map {
+        return Main.GetMovieList.ViewModel(title: $0.title, popularity: $0.popularity, voteCount: $0.voteCount, voteAverage: $0.voteAverage, imageURL: $0.posterPath ?? "", backdropURL: $0.backdropPath ?? "")
+      }
+      //      for a in data{
+      //        viewModel?.append(Main.GetMovieList.ViewModel(title: a., popularity: <#T##Double#>, voteCount: <#T##Int#>, voteAverage: <#T##Int#>, imageURL: <#T##String#>))
+      //      }
+      
+    case .failure(let error):
+      print("error")
+      print(error)
+    }
+    viewController.displayMovieList(viewModel: viewModel)
   }
 }

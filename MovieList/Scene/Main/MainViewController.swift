@@ -9,13 +9,18 @@
 import UIKit
 
 protocol MainViewControllerInterface: class {
-  func displaySomething(viewModel: Main.Something.ViewModel)
+  func displayMovieList(viewModel: [Main.GetMovieList.ViewModel])
 }
 
 class MainViewController: UIViewController, MainViewControllerInterface {
+  
+  
   var interactor: MainInteractorInterface!
   var router: MainRouter!
+  var viewData : [Main.GetMovieList.ViewModel]?
 
+  @IBOutlet weak var tableView: UITableView!
+  
   // MARK: - Object lifecycle
 
   override func awakeFromNib() {
@@ -34,7 +39,7 @@ class MainViewController: UIViewController, MainViewControllerInterface {
 
     let interactor = MainInteractor()
     interactor.presenter = presenter
-    interactor.worker = MainWorker(store: MainStore())
+    interactor.worker = MovieWorker(store: MovieRestStore())
 
     viewController.interactor = interactor
     viewController.router = router
@@ -44,26 +49,26 @@ class MainViewController: UIViewController, MainViewControllerInterface {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    doSomethingOnLoad()
+    tableView.register(UINib(nibName: "MovieCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "MovieCell")
+    getMovieList()
   }
-
+  
   // MARK: - Event handling
-
-  func doSomethingOnLoad() {
+  
+  func getMovieList() {
     // NOTE: Ask the Interactor to do some work
-
-    let request = Main.Something.Request()
-    interactor.doSomething(request: request)
+    let request = Main.GetMovieList.Request()
+    interactor.getMovieList(request: request)
   }
 
   // MARK: - Display logic
 
-  func displaySomething(viewModel: Main.Something.ViewModel) {
+  func displayMovieList(viewModel: [Main.GetMovieList.ViewModel]) {
     // NOTE: Display the result from the Presenter
-
     // nameTextField.text = viewModel.name
-  }
-
+    viewData = viewModel
+    }
+  
   // MARK: - Router
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -73,5 +78,19 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   @IBAction func unwindToMainViewController(from segue: UIStoryboardSegue) {
     print("unwind...")
     router.passDataToNextScene(segue: segue)
+  }
+}
+
+extension MainViewController : UITableViewDelegate, UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return viewData?.count ?? 1
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as? MovieCell else {
+      return UITableViewCell()
+    }
+    cell.updateUI((viewData?[indexPath.row])!)
+    return cell
   }
 }

@@ -9,27 +9,39 @@
 import UIKit
 
 protocol MainInteractorInterface {
-  func doSomething(request: Main.Something.Request)
-  var model: Entity? { get }
+  func getMovieList (request: Main.GetMovieList.Request)
+  var model: MovieModel? { get }
 }
 
 class MainInteractor: MainInteractorInterface {
+  
   var presenter: MainPresenterInterface!
-  var worker: MainWorker?
-  var model: Entity?
-
+  var worker: MovieWorker?
+  var model: MovieModel?
+  
+  var movieList: [MovieList] = []
+  
   // MARK: - Business logic
-
-  func doSomething(request: Main.Something.Request) {
-    worker?.doSomeWork { [weak self] in
-      if case let Result.success(data) = $0 {
-        // If the result was successful, we keep the data so that we can deliver it to another view controller through the router.
-        self?.model = data
+  func getMovieList(request: Main.GetMovieList.Request) {
+    worker?.getMovieList({ [weak self] result in
+      var response: Main.GetMovieList.Response?
+      switch result {
+      case .success(let data):
+        response = Main.GetMovieList.Response(result: Result<[MovieModel]>.success(data.results))
+      case .failure(let error):
+        print(error)
       }
-
-      // NOTE: Pass the result to the Presenter. This is done by creating a response model with the result from the worker. The response could contain a type like UserResult enum (as declared in the SCB Easy project) with the result as an associated value.
-      let response = Main.Something.Response()
-      self?.presenter.presentSomething(response: response)
-    }
+      guard let respons = response else {
+        return
+      }
+      self?.presenter.presentMovieList(response: respons)
+    })
   }
 }
+
+// NOTE: Pass the result to the Presenter. This is done by creating a response model with the result from the worker. The response could contain a type like UserResult enum (as declared in the SCB Easy project) with the result as an associated value.
+//      let response = Main.Something.Response()
+//      self?.presenter.presentSomething(response: response)
+//    }
+//  }
+//}
