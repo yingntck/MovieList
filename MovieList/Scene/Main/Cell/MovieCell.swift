@@ -9,8 +9,14 @@
 import UIKit
 
 class MovieCell: UITableViewCell {
-
-    override func awakeFromNib() {
+  
+  @IBOutlet weak var posterImageView: UIImageView!
+  @IBOutlet weak var backdropImageView: UIImageView!
+  @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var popularityLabel: UILabel!
+  @IBOutlet weak var ratingLabel: UILabel!
+  
+  override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
@@ -20,5 +26,11 @@ class MovieCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+  func updateUI(_ displayedMovie: Main.GetMovieList.ViewModel) {
+    nameLabel.text = displayedMovie.title
+    popularityLabel.text = "\(displayedMovie.popularity)"
+    ratingLabel.text = "\(displayedMovie.voteAverage)"
+    posterImageView.loadImageUrl(displayedMovie.imageURL)
+    backdropImageView.loadImageUrl(displayedMovie.backdropURL)
+  }
 }
