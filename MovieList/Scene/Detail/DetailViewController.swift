@@ -9,10 +9,11 @@
 import UIKit
 
 protocol DetailViewControllerInterface: class {
-  func displaySomething(viewModel: Detail.Something.ViewModel)
+  func displayMovieData(viewModel: Detail.GetMovieData.ViewModel)
 }
 
 class DetailViewController: UIViewController, DetailViewControllerInterface {
+  
   var interactor: DetailInteractorInterface!
   var router: DetailRouter!
 
@@ -34,7 +35,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
 
     let interactor = DetailInteractor()
     interactor.presenter = presenter
-    interactor.worker = DetailWorker(store: DetailStore())
+    interactor.worker = MovieWorker(store: MovieRestStore())
 
     viewController.interactor = interactor
     viewController.router = router
@@ -44,21 +45,21 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    doSomethingOnLoad()
+    getMovieData()
   }
 
   // MARK: - Event handling
 
-  func doSomethingOnLoad() {
+  func getMovieData() {
     // NOTE: Ask the Interactor to do some work
 
-    let request = Detail.Something.Request()
-    interactor.doSomething(request: request)
+    let request = Detail.GetMovieData.Request()
+    interactor.getMovieData(request: request)
   }
 
   // MARK: - Display logic
 
-  func displaySomething(viewModel: Detail.Something.ViewModel) {
+  func displayMovieData(viewModel: Detail.GetMovieData.ViewModel) {
     // NOTE: Display the result from the Presenter
 
     // nameTextField.text = viewModel.name

@@ -10,7 +10,7 @@ import UIKit
 
 struct Detail {
   /// This structure represents a use case
-  struct Something {
+  struct GetMovieData {
     /// Data struct sent to Interactor
     struct Request {}
     /// Data struct sent to Presenter
