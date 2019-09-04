@@ -15,20 +15,15 @@ struct Detail {
     struct Request {}
     /// Data struct sent to Presenter
     struct Response {
-      let movie: MovieModel
+      let movie: DetailModel
     }
     /// Data struct sent to ViewController
     struct ViewModel {
-      let displayedMovie: DisplayMovie
-      struct DisplayMovie {
-        let title: String
-        let popularity: Double
-        let voteCount: Int
-        let voteAverage: Int
-        let imageURL: String
-        let category: String
-        let language: String
-      }
+      let title: String
+      let popularity: Double
+      let imageURL: String
+      let category: String
+      let language: String
     }
   }
 }

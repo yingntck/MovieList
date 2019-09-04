@@ -21,15 +21,18 @@ class DetailInteractor: DetailInteractorInterface {
   // MARK: - Business logic
 
   func getMovieData(request: Detail.GetMovieData.Request) {
-//    worker?.doSomeWork { [weak self] in
-//      if case let Result.success(data) = $0 {
-        // If the result was successful, we keep the data so that we can deliver it to another view controller through the router.
-//        self?.model = data
-//      }
+    worker?.getMovieDetail({ [weak self] result in
+    var response: Detail.GetMovieData.Response
+    switch result {
+    case .success(let data):
+      print(data)
+      response = Detail.GetMovieData.Response(movie: data)
+    case .failure(let error):
+      response = Detail.GetMovieData.Response(movie: error as! DetailModel)
+      print(error)
+    }
+    self?.presenter.presentMovieData(response: response)
+  })
 
-      // NOTE: Pass the result to the Presenter. This is done by creating a response model with the result from the worker. The response could contain a type like UserResult enum (as declared in the SCB Easy project) with the result as an associated value.
-//      let response = Detail.Something.Response()
-//      self?.presenter.presentSomething(response: response)
-//    }
   }
 }

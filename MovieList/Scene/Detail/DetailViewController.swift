@@ -52,7 +52,6 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
 
   func getMovieData() {
     // NOTE: Ask the Interactor to do some work
-
     let request = Detail.GetMovieData.Request()
     interactor.getMovieData(request: request)
   }
