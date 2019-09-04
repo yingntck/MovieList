@@ -21,16 +21,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AJ0-QK-yNo">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="200" id="YHO-bY-drB">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="200"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YHO-bY-drB" id="pBP-FB-DbE">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="j2w-xv-IDr" id="hcO-4D-oZj"/>
                                     <outlet property="delegate" destination="j2w-xv-IDr" id="6t4-3z-Enb"/>
@@ -48,7 +38,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gm5-yF-4fg"/>
                     <connections>
-                        <outlet property="mTableView" destination="AJ0-QK-yNo" id="jE2-y8-WOW"/>
+                        <outlet property="tableView" destination="AJ0-QK-yNo" id="l4F-oC-VxR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RG7-cI-OGi" userLabel="First Responder" sceneMemberID="firstResponder"/>

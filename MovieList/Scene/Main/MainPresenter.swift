@@ -22,12 +22,13 @@ class MainPresenter: MainPresenterInterface {
     switch response.result {
     case .success(let data):
       viewModel = data.map {
-        return Main.GetMovieList.ViewModel(title: $0.title, popularity: $0.popularity, voteCount: $0.voteCount, voteAverage: $0.voteAverage, imageURL: $0.posterPath ?? "", backdropURL: $0.backdropPath ?? "")
+        return Main.GetMovieList.ViewModel(title: $0.title,
+                                           popularity: $0.popularity,
+                                           voteCount: $0.voteCount,
+                                           voteAverage: $0.voteAverage,
+          imageURL: "https://image.tmdb.org/t/p/original\($0.posterPath ?? "" )" ,
+          backdropURL: "https://image.tmdb.org/t/p/original\($0.backdropPath ?? "")" )
       }
-      //      for a in data{
-      //        viewModel?.append(Main.GetMovieList.ViewModel(title: a., popularity: <#T##Double#>, voteCount: <#T##Int#>, voteAverage: <#T##Int#>, imageURL: <#T##String#>))
-      //      }
-      
     case .failure(let error):
       print("error")
       print(error)

@@ -24,17 +24,16 @@ class MainInteractor: MainInteractorInterface {
   // MARK: - Business logic
   func getMovieList(request: Main.GetMovieList.Request) {
     worker?.getMovieList({ [weak self] result in
-      var response: Main.GetMovieList.Response?
+      var response: Main.GetMovieList.Response
       switch result {
       case .success(let data):
+        print(data)
         response = Main.GetMovieList.Response(result: Result<[MovieModel]>.success(data.results))
       case .failure(let error):
+        response = Main.GetMovieList.Response(result: Result<[MovieModel]>.failure(error))
         print(error)
       }
-      guard let respons = response else {
-        return
-      }
-      self?.presenter.presentMovieList(response: respons)
+      self?.presenter.presentMovieList(response: response)
     })
   }
 }

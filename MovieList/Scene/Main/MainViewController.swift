@@ -49,7 +49,7 @@ class MainViewController: UIViewController, MainViewControllerInterface {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.register(UINib(nibName: "MovieCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "MovieCell")
+    tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
     getMovieList()
   }
   
@@ -66,7 +66,9 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   func displayMovieList(viewModel: [Main.GetMovieList.ViewModel]) {
     // NOTE: Display the result from the Presenter
     // nameTextField.text = viewModel.name
+    print(viewModel)
     viewData = viewModel
+    tableView.reloadData()
     }
   
   // MARK: - Router
@@ -87,10 +89,10 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as? MovieCell else {
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell") as? MovieCell, let viewData = viewData else {
       return UITableViewCell()
     }
-    cell.updateUI((viewData?[indexPath.row])!)
+    cell.updateUI(viewData[indexPath.row])
     return cell
   }
 }
