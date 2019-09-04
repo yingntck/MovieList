@@ -13,6 +13,9 @@ import AlamofireImage
 extension UIImageView {
     
     func loadImageUrl(_ urlString:String) {
-        af_setImage(withURL: URL(string: urlString)!)
+      guard let url = URL(string: urlString) else {
+        return
+      }
+        af_setImage(withURL: url)
     }
 }
