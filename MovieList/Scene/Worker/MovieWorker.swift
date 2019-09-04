@@ -10,6 +10,8 @@ import UIKit
 
 protocol MovieStoreProtocol {
   func getMovieList(_ completion: @escaping (Result<MovieList>) -> Void)
+  func getMovieDetail(_ completion: @escaping (Result<DetailModel>) -> Void)
+
 }
 
 class MovieWorker {
@@ -22,10 +24,15 @@ class MovieWorker {
   // MARK: - Business Logic
   
   func getMovieList(_ completion: @escaping (Result<MovieList>) -> Void) {
-    // NOTE: Do the work
     store.getMovieList {
-      // The worker may perform some small business logic before returning the result to the Interactor
       completion($0)
     }
   }
+  
+  func getMovieDetail(_ completion: @escaping (Result<DetailModel>) -> Void) {
+    store.getMovieDetail {
+      completion($0)
+    }
+  }
+
 }
