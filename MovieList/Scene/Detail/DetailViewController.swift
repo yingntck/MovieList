@@ -22,6 +22,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   @IBOutlet weak var popularityLabel: UILabel!
   
   @IBOutlet weak var stackView: UIStackView!
+  @IBOutlet var starButton: [UIButton]!
   
   var interactor: DetailInteractorInterface!
   var router: DetailRouter!
@@ -92,5 +93,18 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   @IBAction func unwindToDetailViewController(from segue: UIStoryboardSegue) {
     print("unwind...")
     router.passDataToNextScene(segue: segue)
+  }
+  
+  @IBAction func buttonTapped(_ sender: UIButton) {
+    print("Rated \(sender.tag) stars.")
+    let rateView = sender.tag
+    print(rateView)
+    for button in starButton {
+      if button.tag > sender.tag {
+        button.setBackgroundImage(UIImage.init(named: "star.png"), for: .normal)
+      } else {
+        button.setBackgroundImage(UIImage.init(named: "star-tap.png"), for: .normal)
+      }
+    }
   }
 }
