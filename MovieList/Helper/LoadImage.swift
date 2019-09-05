@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 import AlamofireImage
 
+enum Result<T> {
+  case success(T)
+  case failure(Error)
+}
+
 extension UIImageView {
     
     func loadImageUrl(_ urlString:String) {
