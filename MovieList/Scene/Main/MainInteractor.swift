@@ -11,6 +11,7 @@ import UIKit
 protocol MainInteractorInterface {
   func getMovieList (request: Main.GetMovieList.Request)
   var model: MovieModel? { get }
+  var movieList: [MovieModel] { get }
 }
 
 class MainInteractor: MainInteractorInterface {
@@ -19,7 +20,7 @@ class MainInteractor: MainInteractorInterface {
   var worker: MovieWorker?
   var model: MovieModel?
   
-  var movieList: [MovieList] = []
+  var movieList: [MovieModel] = []
   
   // MARK: - Business logic
   func getMovieList(request: Main.GetMovieList.Request) {
@@ -27,7 +28,7 @@ class MainInteractor: MainInteractorInterface {
       var response: Main.GetMovieList.Response
       switch result {
       case .success(let data):
-        print(data)
+        self?.movieList = data.results
         response = Main.GetMovieList.Response(result: Result<[MovieModel]>.success(data.results))
       case .failure(let error):
         response = Main.GetMovieList.Response(result: Result<[MovieModel]>.failure(error))

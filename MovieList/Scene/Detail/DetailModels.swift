@@ -15,7 +15,7 @@ struct Detail {
     struct Request {}
     /// Data struct sent to Presenter
     struct Response {
-      let movie: DetailModel
+      let movie: Result<DetailModel>
     }
     /// Data struct sent to ViewController
     struct ViewModel {

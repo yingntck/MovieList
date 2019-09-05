@@ -14,8 +14,16 @@ protocol DetailViewControllerInterface: class {
 
 class DetailViewController: UIViewController, DetailViewControllerInterface {
   
+  @IBOutlet weak var posterImageView: UIImageView!
+  @IBOutlet weak var ttitleLabel: UILabel!
+  @IBOutlet weak var overviewLabel: UILabel!
+  @IBOutlet weak var categoryLabel: UILabel!
+  @IBOutlet weak var languageLabel: UILabel!
+  @IBOutlet weak var popularityLabel: UILabel!
+  
   var interactor: DetailInteractorInterface!
   var router: DetailRouter!
+  var viewDetail: Detail.GetMovieData.ViewModel?
 
   // MARK: - Object lifecycle
 
@@ -59,9 +67,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   // MARK: - Display logic
 
   func displayMovieData(viewModel: Detail.GetMovieData.ViewModel) {
-    // NOTE: Display the result from the Presenter
-
-    // nameTextField.text = viewModel.name
+    viewDetail = viewModel
   }
 
   // MARK: - Router

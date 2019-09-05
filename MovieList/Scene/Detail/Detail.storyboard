@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="zJS-39-wqO">
             <objects>
-                <viewController id="fVD-hy-cGe" sceneMemberID="viewController">
+                <viewController id="fVD-hy-cGe" customClass="DetailViewController" customModule="MovieList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NHg-dm-SlA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,6 +88,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Lr-d8-VeU"/>
                     </view>
+                    <connections>
+                        <outlet property="categoryLabel" destination="LbC-ra-xAV" id="eMX-5P-Iga"/>
+                        <outlet property="languageLabel" destination="bHy-0J-jIZ" id="wMx-xQ-pbH"/>
+                        <outlet property="overviewLabel" destination="mVS-Ia-H2N" id="Bl9-Fm-m8H"/>
+                        <outlet property="popularityLabel" destination="Kan-Vo-MUA" id="n3n-Nt-vJh"/>
+                        <outlet property="posterImageView" destination="Mgd-4A-T4j" id="bJw-XS-fqb"/>
+                        <outlet property="ttitleLabel" destination="udb-Ug-UAf" id="i55-2X-yeI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4w-RH-TZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

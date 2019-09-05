@@ -15,12 +15,26 @@ protocol DetailPresenterInterface {
 class DetailPresenter: DetailPresenterInterface {
   weak var viewController: DetailViewControllerInterface!
 
+
   // MARK: - Presentation logic
 
   func presentMovieData(response: Detail.GetMovieData.Response) {
-    // NOTE: Format the response from the Interactor and pass the result back to the View Controller. The resulting view model should be using only primitive types. Eg: the view should not need to involve converting date object into a formatted string. The formatting is done here.
-
-//    let viewModel = Detail.Something.ViewModel()
-//    viewController.displaySomething(viewModel: viewModel)
+    var model: Detail.GetMovieData.ViewModel?
+    switch response.movie {
+    case .success(let data):
+      model = Detail.GetMovieData.ViewModel(title: data.title,
+                                                popularity: data.popularity,
+                                  imageURL: "https://image.tmdb.org/t/p/original\(data.posterPath)",
+                                                category: data.genres.first?.name ?? "",
+                                                language: data.originalLanguage)
+    case .failure(let error):
+      print("error present detail")
+      print(error)
+    }
+    guard let viewModel = model else {
+      return
+      
+    }
+    viewController.displayMovieData(viewModel: viewModel)
   }
 }

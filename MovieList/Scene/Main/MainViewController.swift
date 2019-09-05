@@ -18,35 +18,35 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   var interactor: MainInteractorInterface!
   var router: MainRouter!
   var viewData : [Main.GetMovieList.ViewModel]?
-
+  
   @IBOutlet weak var tableView: UITableView!
   
   // MARK: - Object lifecycle
-
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     configure(viewController: self)
   }
-
+  
   // MARK: - Configuration
-
+  
   private func configure(viewController: MainViewController) {
     let router = MainRouter()
     router.viewController = viewController
-
+    
     let presenter = MainPresenter()
     presenter.viewController = viewController
-
+    
     let interactor = MainInteractor()
     interactor.presenter = presenter
     interactor.worker = MovieWorker(store: MovieRestStore())
-
+    
     viewController.interactor = interactor
     viewController.router = router
   }
-
+  
   // MARK: - View lifecycle
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
@@ -60,23 +60,25 @@ class MainViewController: UIViewController, MainViewControllerInterface {
     let request = Main.GetMovieList.Request()
     interactor.getMovieList(request: request)
   }
-
+  
   // MARK: - Display logic
-
+  
   func displayMovieList(viewModel: [Main.GetMovieList.ViewModel]) {
-    // NOTE: Display the result from the Presenter
-    // nameTextField.text = viewModel.name
-    print(viewModel)
+//    print(viewModel)
     viewData = viewModel
     tableView.reloadData()
-    }
+  }
+  
+//  func displaySelectMovie(viewModel: [Main.GetMovieList.ViewModel]) {
+//    router.navigateToDetail()
+//  }
   
   // MARK: - Router
-
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     router.passDataToNextScene(segue: segue)
   }
-
+  
   @IBAction func unwindToMainViewController(from segue: UIStoryboardSegue) {
     print("unwind...")
     router.passDataToNextScene(segue: segue)
@@ -94,5 +96,17 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     }
     cell.updateUI(viewData[indexPath.row])
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    print("Selected Row: \(indexPath.row)")
+//    let id = interactor.movieList[indexPath.row].id
+    let id = "\(interactor.movieList[indexPath.row].id)"
+    router.navigateToDetail(withID: id)
+//    print(viewData![indexPath.row].imageURL)
+    //    let request = Main.SetSelectMobile.Request(index: indexPath.row)
+    //    interactor.setSelectMobile(request: request)
+    
   }
 }
