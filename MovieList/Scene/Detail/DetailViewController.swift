@@ -15,7 +15,7 @@ protocol DetailViewControllerInterface: class {
 class DetailViewController: UIViewController, DetailViewControllerInterface {
   
   @IBOutlet weak var posterImageView: UIImageView!
-  @IBOutlet weak var ttitleLabel: UILabel!
+  @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var overviewLabel: UILabel!
   @IBOutlet weak var categoryLabel: UILabel!
   @IBOutlet weak var languageLabel: UILabel!
@@ -68,8 +68,19 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
 
   func displayMovieData(viewModel: Detail.GetMovieData.ViewModel) {
     viewDetail = viewModel
-  }
+    updateDetail(viewDetail!)
 
+  }
+  
+  func updateDetail(_ viewDetail: Detail.GetMovieData.ViewModel) {
+    titleLabel.text = viewDetail.title
+    overviewLabel.text = viewDetail.overview
+    popularityLabel.text = "\(viewDetail.popularity)"
+    languageLabel.text = viewDetail.language
+    categoryLabel.text = viewDetail.category
+    posterImageView.loadImageUrl(viewDetail.imageURL)
+  }
+    
   // MARK: - Router
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -3,19 +3,21 @@ import Foundation
 // MARK: - DetailModel
 struct DetailModel: Codable {
   let adult: Bool
-  let backdropPath: String
-  let belongsToCollection: BelongsToCollection
+  let backdropPath: String?
+  let belongsToCollection: BelongsToCollection?
   let budget: Int
   let genres: [Genre]
-  let homepage: String
+  let homepage: String?
   let id: Int
-  let imdbID, originalLanguage, originalTitle, overview: String
+  let imdbID: String?
+  let originalLanguage, originalTitle, overview: String
   let popularity: Double
-  let posterPath: String
-  let productionCompanies: [ProductionCompany]
-  let productionCountries: [ProductionCountry]
+  let posterPath: String?
+  let productionCompanies: [ProductionCompany]?
+  let productionCountries: [ProductionCountry]?
   let releaseDate: String
-  let revenue, runtime: Int
+  let revenue: Int
+  let runtime: Int?
   let spokenLanguages: [SpokenLanguage]
   let status, tagline, title: String
   let video: Bool

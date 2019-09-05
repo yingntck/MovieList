@@ -20,6 +20,7 @@ struct Detail {
     /// Data struct sent to ViewController
     struct ViewModel {
       let title: String
+      let overview: String
       let popularity: Double
       let imageURL: String
       let category: String

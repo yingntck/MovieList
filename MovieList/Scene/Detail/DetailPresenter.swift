@@ -15,7 +15,6 @@ protocol DetailPresenterInterface {
 class DetailPresenter: DetailPresenterInterface {
   weak var viewController: DetailViewControllerInterface!
 
-
   // MARK: - Presentation logic
 
   func presentMovieData(response: Detail.GetMovieData.Response) {
@@ -23,18 +22,19 @@ class DetailPresenter: DetailPresenterInterface {
     switch response.movie {
     case .success(let data):
       model = Detail.GetMovieData.ViewModel(title: data.title,
-                                                popularity: data.popularity,
+                                            overview: data.overview,
+                                            popularity: data.popularity,
                                   imageURL: "https://image.tmdb.org/t/p/original\(data.posterPath)",
-                                                category: data.genres.first?.name ?? "",
-                                                language: data.originalLanguage)
+                                  category: "Category: \(data.genres.first?.name ?? "None") ",
+                                  language: "Language: \(data.originalLanguage)")
     case .failure(let error):
       print("error present detail")
       print(error)
     }
     guard let viewModel = model else {
       return
-      
     }
     viewController.displayMovieData(viewModel: viewModel)
+//    print(viewModel)
   }
 }

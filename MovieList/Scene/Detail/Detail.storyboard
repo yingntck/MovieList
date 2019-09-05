@@ -94,7 +94,7 @@
                         <outlet property="overviewLabel" destination="mVS-Ia-H2N" id="Bl9-Fm-m8H"/>
                         <outlet property="popularityLabel" destination="Kan-Vo-MUA" id="n3n-Nt-vJh"/>
                         <outlet property="posterImageView" destination="Mgd-4A-T4j" id="bJw-XS-fqb"/>
-                        <outlet property="ttitleLabel" destination="udb-Ug-UAf" id="i55-2X-yeI"/>
+                        <outlet property="titleLabel" destination="udb-Ug-UAf" id="i55-2X-yeI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4w-RH-TZI" userLabel="First Responder" sceneMemberID="firstResponder"/>

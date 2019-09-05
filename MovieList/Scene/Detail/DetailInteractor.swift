@@ -10,6 +10,7 @@ import UIKit
 
 protocol DetailInteractorInterface {
   func getMovieData(request: Detail.GetMovieData.Request)
+  
   var model: DetailModel? { get }
   var id: String? { get set }
 }

@@ -39,7 +39,7 @@ class MovieRestStore: MovieStoreProtocol {
   }
   
   func getMovieDetail(id: String, _ completion: @escaping (Result<DetailModel>) -> Void) {
-    AF.request(URL(string: String(format: urlDetail, id))!, method: .get).responseJSON { response in
+    AF.request(URL(string: String(format: urlDetail, id))!, method: .get).responseJSON { (response) in
       switch response.result {
       case .success:
         do {
