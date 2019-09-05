@@ -21,6 +21,8 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   @IBOutlet weak var languageLabel: UILabel!
   @IBOutlet weak var popularityLabel: UILabel!
   
+  @IBOutlet weak var stackView: UIStackView!
+  
   var interactor: DetailInteractorInterface!
   var router: DetailRouter!
   var viewDetail: Detail.GetMovieData.ViewModel?
@@ -31,7 +33,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
     super.awakeFromNib()
     configure(viewController: self)
   }
-
+  
   // MARK: - Configuration
 
   private func configure(viewController: DetailViewController) {

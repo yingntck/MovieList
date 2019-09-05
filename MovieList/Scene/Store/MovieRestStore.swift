@@ -21,7 +21,7 @@ class MovieRestStore: MovieStoreProtocol {
       switch response.result {
       case .success:
         do {
-          print("suscess feed movie list")
+//          print("suscess feed movie list")
           let decoder = JSONDecoder()
           let result = try decoder.decode(MovieList.self, from: response.data!)
           completion(.success(result))
@@ -43,7 +43,7 @@ class MovieRestStore: MovieStoreProtocol {
       switch response.result {
       case .success:
         do {
-          print("suscess feed movie data")
+//          print("suscess feed movie data")
           let decoder = JSONDecoder()
           let result = try decoder.decode(DetailModel.self, from: response.data!)
           completion(.success(result))

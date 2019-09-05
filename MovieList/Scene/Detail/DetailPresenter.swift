@@ -31,7 +31,7 @@ class DetailPresenter: DetailPresenterInterface {
       
       model = Detail.GetMovieData.ViewModel(title: data.title,
                                             overview: data.overview,
-                                            popularity: data.popularity,
+                                  popularity: data.popularity,
                                   imageURL: "https://image.tmdb.org/t/p/original\(data.posterPath ?? "")",
                                   category: "Category: \(categoryList)",
                                   language: "Language: \(data.originalLanguage)")

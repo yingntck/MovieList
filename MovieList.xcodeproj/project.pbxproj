@@ -31,7 +31,6 @@
 		55D0EE5E231E26EC003FA995 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EE5D231E26EC003FA995 /* DetailModel.swift */; };
 		55D0EE63231E4019003FA995 /* MovieRestStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EE62231E4019003FA995 /* MovieRestStore.swift */; };
 		55D0EE65231E4035003FA995 /* MovieWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EE64231E4035003FA995 /* MovieWorker.swift */; };
-		55D0EE67231E6B86003FA995 /* MainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EE66231E6B86003FA995 /* MainEntity.swift */; };
 		CA803052859426D35CF84BE7 /* Pods_MovieList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 689FEFA59493C02723D50B70 /* Pods_MovieList.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +61,6 @@
 		55D0EE5D231E26EC003FA995 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		55D0EE62231E4019003FA995 /* MovieRestStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRestStore.swift; sourceTree = "<group>"; };
 		55D0EE64231E4035003FA995 /* MovieWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWorker.swift; sourceTree = "<group>"; };
-		55D0EE66231E6B86003FA995 /* MainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEntity.swift; sourceTree = "<group>"; };
 		689FEFA59493C02723D50B70 /* Pods_MovieList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C6EC17EB4E4598505B0CBEF /* Pods-MovieList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieList.release.xcconfig"; path = "Target Support Files/Pods-MovieList/Pods-MovieList.release.xcconfig"; sourceTree = "<group>"; };
 		F7AA0BE530BE0AB62379CF0E /* Pods-MovieList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieList.debug.xcconfig"; path = "Target Support Files/Pods-MovieList/Pods-MovieList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 				55D0EE2A231D2BA8003FA995 /* MainPresenter.swift */,
 				55D0EE2C231D2BA8003FA995 /* MainRouter.swift */,
 				55D0EE2D231D2BA8003FA995 /* MainModels.swift */,
-				55D0EE66231E6B86003FA995 /* MainEntity.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -364,7 +361,6 @@
 				55D0EE5E231E26EC003FA995 /* DetailModel.swift in Sources */,
 				55D0EE65231E4035003FA995 /* MovieWorker.swift in Sources */,
 				55D0EE47231D2BD6003FA995 /* DetailInteractor.swift in Sources */,
-				55D0EE67231E6B86003FA995 /* MainEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

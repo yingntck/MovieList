@@ -87,7 +87,7 @@ class MainViewController: UIViewController, MainViewControllerInterface {
 
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return viewData?.count ?? 1
+    return viewData?.count ?? 0
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
