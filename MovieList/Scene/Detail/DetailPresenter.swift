@@ -21,11 +21,19 @@ class DetailPresenter: DetailPresenterInterface {
     var model: Detail.GetMovieData.ViewModel?
     switch response.movie {
     case .success(let data):
+      var categoryArray : Array<String> = []
+      for i in data.genres{
+        categoryArray.append(i.name)
+      }
+//      print(s)
+//      print(categoryArray.joined(separator: ", "))
+      let categoryList = categoryArray.joined(separator: ", ")
+      
       model = Detail.GetMovieData.ViewModel(title: data.title,
                                             overview: data.overview,
                                             popularity: data.popularity,
-                                  imageURL: "https://image.tmdb.org/t/p/original\(data.posterPath)",
-                                  category: "Category: \(data.genres.first?.name ?? "None") ",
+                                  imageURL: "https://image.tmdb.org/t/p/original\(data.posterPath ?? "")",
+                                  category: "Category: \(categoryList)",
                                   language: "Language: \(data.originalLanguage)")
     case .failure(let error):
       print("error present detail")
