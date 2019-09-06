@@ -10,6 +10,7 @@ import UIKit
 
 protocol DetailViewControllerInterface: class {
   func displayMovieData(viewModel: Detail.GetMovieData.ViewModel)
+  func displayRating(viewModel: Detail.SetVote.ViewModel)
 }
 
 class DetailViewController: UIViewController, DetailViewControllerInterface {
@@ -27,6 +28,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   var interactor: DetailInteractorInterface!
   var router: DetailRouter!
   var viewDetail: Detail.GetMovieData.ViewModel?
+  var updatePopularity: Detail.SetVote.ViewModel?
 
   // MARK: - Object lifecycle
 
@@ -72,7 +74,11 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   func displayMovieData(viewModel: Detail.GetMovieData.ViewModel) {
     viewDetail = viewModel
     updateDetail(viewDetail!)
-
+  }
+  
+  func displayRating(viewModel: Detail.SetVote.ViewModel) {
+    updatePopularity = viewModel
+    popularityLabel.text = updatePopularity?.popularity
   }
   
   func updateDetail(_ viewDetail: Detail.GetMovieData.ViewModel) {
@@ -97,8 +103,8 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   
   @IBAction func buttonTapped(_ sender: UIButton) {
     print("Rated \(sender.tag) stars.")
-    let rateView = sender.tag
-    print(rateView)
+//    let rateView = sender.tag
+//    print(rateView)
     for button in starButton {
       if button.tag > sender.tag {
         button.setBackgroundImage(UIImage.init(named: "star.png"), for: .normal)
@@ -106,5 +112,13 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
         button.setBackgroundImage(UIImage.init(named: "star-tap.png"), for: .normal)
       }
     }
+    calculateVote(vote: Double(sender.tag))
+  }
+  
+  // User-Defaults Vote
+  
+  func calculateVote(vote: Double){
+    let request = Detail.SetVote.Request(voteUser: vote)
+    interactor.calculateVote(request: request)
   }
 }

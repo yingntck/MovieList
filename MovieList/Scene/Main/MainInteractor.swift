@@ -38,10 +38,3 @@ class MainInteractor: MainInteractorInterface {
     })
   }
 }
-
-// NOTE: Pass the result to the Presenter. This is done by creating a response model with the result from the worker. The response could contain a type like UserResult enum (as declared in the SCB Easy project) with the result as an associated value.
-//      let response = Main.Something.Response()
-//      self?.presenter.presentSomething(response: response)
-//    }
-//  }
-//}

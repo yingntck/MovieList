@@ -21,10 +21,24 @@ struct Detail {
     struct ViewModel {
       let title: String
       let overview: String
-      let popularity: Double
+      let popularity: String
       let imageURL: String
       let category: String
       let language: String
+    }
+  }
+  
+  struct SetVote {
+    struct Request {
+      let voteUser: Double
+    }
+    /// Data struct sent to Presenter
+    struct Response {
+      let voteResult: Double
+    }
+    /// Data struct sent to ViewController
+    struct ViewModel {
+      let popularity: String
     }
   }
 }
