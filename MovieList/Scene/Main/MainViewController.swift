@@ -57,7 +57,7 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   
   func getMovieList() {
     // NOTE: Ask the Interactor to do some work
-    let request = Main.GetMovieList.Request()
+    let request = Main.GetMovieList.Request(withUpdateRatingDict: false)
     interactor.getMovieList(request: request)
   }
   
@@ -69,20 +69,35 @@ class MainViewController: UIViewController, MainViewControllerInterface {
     tableView.reloadData()
   }
   
-//  func displaySelectMovie(viewModel: [Main.GetMovieList.ViewModel]) {
-//    router.navigateToDetail()
+  func updatePopularity() {
+    // เรียก userdefault เพื่อที่จะ get ค่า id กับ rating มา
+    // หา id ที่เท่ากันใน interactor เพื่อที่จะ update ค่า rating
+    let request = Main.GetMovieList.Request(withUpdateRatingDict: true)
+    interactor.getMovieList(request: request)
+  }
+  
+  func loadmoreData() {
+    
+  }
+  
+  // Sorting ASC, DESC
+  
+//  func showSortAlert() {
+//    let alert = UIAlertController(title: "Sort", message: nil, preferredStyle: .alert)
+//
+//    alert.addAction(UIAlertAction(title: "Price low to high", style: .default, handler: { (_) in
+//      self.dataInfo.sort(by: { (first, second) -> Bool in
+//        first.price<second.price
+//      })
+//      self.mTableView.reloadData()
+//    }))
+//
+//    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+//
+//    }))
+//    self.present(alert, animated: true, completion: nil)
 //  }
   
-  // MARK: - Router
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    router.passDataToNextScene(segue: segue)
-  }
-  
-  @IBAction func unwindToMainViewController(from segue: UIStoryboardSegue) {
-    print("unwind...")
-    router.passDataToNextScene(segue: segue)
-  }
 }
 
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
@@ -100,13 +115,8 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    print("Selected Row: \(indexPath.row)")
-//    let id = interactor.movieList[indexPath.row].id
+//    print("Selected Row: \(indexPath.row)")
     let id = "\(interactor.movieList[indexPath.row].id)"
     router.navigateToDetail(withID: id)
-//    print(viewData![indexPath.row].imageURL)
-    //    let request = Main.SetSelectMobile.Request(index: indexPath.row)
-    //    interactor.setSelectMobile(request: request)
-    
   }
 }

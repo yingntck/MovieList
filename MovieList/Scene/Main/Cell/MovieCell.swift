@@ -26,6 +26,7 @@ class MovieCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+  
   func updateUI(_ displayedMovie: Main.GetMovieList.ViewModel) {
     nameLabel.text = displayedMovie.title
     popularityLabel.text = "\(displayedMovie.popularity)"

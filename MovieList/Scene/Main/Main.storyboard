@@ -36,7 +36,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9H8-ue-5zI"/>
                     </view>
-                    <navigationItem key="navigationItem" id="gm5-yF-4fg"/>
+                    <navigationItem key="navigationItem" id="gm5-yF-4fg">
+                        <barButtonItem key="rightBarButtonItem" title="Sort" id="YVk-7h-fUT"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="AJ0-QK-yNo" id="l4F-oC-VxR"/>
                     </connections>
