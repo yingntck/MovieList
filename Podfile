@@ -10,5 +10,6 @@ target 'MovieList' do
 pod 'Alamofire', '5.0.0-beta.6'
 pod 'DynamicColor', '~> 4.1'
 pod 'AlamofireImage', '4.0.0-beta.3'
+pod 'MJRefresh', '~> 3.2'
 
 end
