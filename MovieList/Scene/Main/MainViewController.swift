@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import MJRefresh
 
 protocol MainViewControllerInterface: class {
   func displayMovieList(viewModel: [Main.GetMovieList.ViewModel])
 }
 
 class MainViewController: UIViewController, MainViewControllerInterface {
-  
   
   var interactor: MainInteractorInterface!
   var router: MainRouter!
@@ -51,14 +51,25 @@ class MainViewController: UIViewController, MainViewControllerInterface {
     super.viewDidLoad()
     tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
     getMovieList()
+    
+    tableView.mj_footer = MJRefreshAutoNormalFooter()
+    tableView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(footerRefresh))
+    
   }
   
   // MARK: - Event handling
   
   func getMovieList() {
     // NOTE: Ask the Interactor to do some work
-    let request = Main.GetMovieList.Request(withUpdateRatingDict: false)
+    let request = Main.GetMovieList.Request(withUpdateRatingDict: false, isLoading: false)
     interactor.getMovieList(request: request)
+  }
+
+  @objc
+  func footerRefresh() {
+    print("Loadmore..")
+    let request = Main.SetLoadMore.Request()
+    interactor.setCountPage(request: request)
   }
   
   // MARK: - Display logic
@@ -66,38 +77,16 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   func displayMovieList(viewModel: [Main.GetMovieList.ViewModel]) {
 //    print(viewModel)
     viewData = viewModel
+    tableView.mj_footer.endRefreshing()
     tableView.reloadData()
   }
   
   func updatePopularity() {
     // เรียก userdefault เพื่อที่จะ get ค่า id กับ rating มา
     // หา id ที่เท่ากันใน interactor เพื่อที่จะ update ค่า rating
-    let request = Main.GetMovieList.Request(withUpdateRatingDict: true)
+    let request = Main.GetMovieList.Request(withUpdateRatingDict: true, isLoading: false)
     interactor.getMovieList(request: request)
   }
-  
-  func loadmoreData() {
-    
-  }
-  
-  // Sorting ASC, DESC
-  
-//  func showSortAlert() {
-//    let alert = UIAlertController(title: "Sort", message: nil, preferredStyle: .alert)
-//
-//    alert.addAction(UIAlertAction(title: "Price low to high", style: .default, handler: { (_) in
-//      self.dataInfo.sort(by: { (first, second) -> Bool in
-//        first.price<second.price
-//      })
-//      self.mTableView.reloadData()
-//    }))
-//
-//    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
-//
-//    }))
-//    self.present(alert, animated: true, completion: nil)
-//  }
-  
 }
 
 extension MainViewController : UITableViewDelegate, UITableViewDataSource {
@@ -119,4 +108,13 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
     let id = "\(interactor.movieList[indexPath.row].id)"
     router.navigateToDetail(withID: id)
   }
+//
+//  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//    if indexPath.row == (viewData!.count - 1) {
+//      let request = Main.SetLoadMore.Request()
+//      interactor.setCountPage(request: request)
+//      // find lastCell in tableView
+//    }
+//  }
+
 }

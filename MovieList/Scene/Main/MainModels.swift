@@ -15,6 +15,7 @@ struct Main {
     /// Data struct sent to Interactor
     struct Request {
       let withUpdateRatingDict: Bool
+      let isLoading: Bool
     }
     /// Data struct sent to Presenter
     struct Response {
@@ -46,4 +47,36 @@ struct Main {
       let popularity: String
     }
   }
+  
+  struct SetLoadMore {
+    /// Data struct sent to Interactor
+    struct Request {
+    }
+    
+    /// Data struct sent to Presenter
+    struct Response {
+      let totalPage: Int
+      let currentPage: Int
+    }
+    
+    /// Data struct sent to ViewController
+    struct ViewModel {
+    }
+  }
+  
+  struct PushToRefresh {
+    /// Data struct sent to Interactor
+    struct Request {
+      let currentPage: Int
+    }
+    
+    /// Data struct sent to Presenter
+    struct Response {
+    }
+    
+    /// Data struct sent to ViewController
+    struct ViewModel {
+    }
+  }
+  
 }

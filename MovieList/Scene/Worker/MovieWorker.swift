@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MovieStoreProtocol {
-  func getMovieList(_ completion: @escaping (Result<MovieList>) -> Void)
+  func getMovieList(page: Int, _ completion: @escaping (Result<MovieList>) -> Void)
   func getMovieDetail(id: String, _ completion: @escaping (Result<DetailModel>) -> Void)
 
 }
@@ -23,8 +23,8 @@ class MovieWorker {
 
   // MARK: - Business Logic
   
-  func getMovieList(_ completion: @escaping (Result<MovieList>) -> Void) {
-    store.getMovieList {
+  func getMovieList(page: Int, _ completion: @escaping (Result<MovieList>) -> Void) {
+    store.getMovieList(page: page) {
       completion($0)
     }
   }
