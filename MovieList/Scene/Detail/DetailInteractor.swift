@@ -41,7 +41,7 @@ class DetailInteractor: DetailInteractorInterface {
       switch result {
       case .success(let data):
         self?.selectedMovie = data
-        print(data)
+//        print(data)
         response = Detail.GetMovieData.Response(movie: Result<DetailModel>.success(data))
       case .failure(let error):
         response = Detail.GetMovieData.Response(movie: Result<DetailModel>.failure(error))
@@ -61,9 +61,13 @@ class DetailInteractor: DetailInteractorInterface {
     voteAvg = selectedMovie?.voteAverage
     let avg = voteAvg ?? 0.0
     newVote = ((((avg*count)+(request.voteUser*2))/(count+1))/2)
-    let data = [id: newVote]
-    UserDefaults.standard.set(data, forKey: "voteByUser")
-    let response = Detail.SetVote.Response(voteResult: newVote ?? 0.0)
-    presenter.presentSetNewVote(response: response)
+    
+    guard var voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double] else {
+      return
+    }
+    voteResult[id] = newVote
+    UserDefaults.standard.set(voteResult, forKey: "voteByUser")
+//    let response = Detail.SetVote.Response(voteResult: newVote ?? 0.0)
+//    presenter.presentSetNewVote(response: response)
   }
 }

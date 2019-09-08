@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		55018A58231EBCDB00F7E6ED /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55018A57231EBCDB00F7E6ED /* LoadImage.swift */; };
+		55018A58231EBCDB00F7E6ED /* Enum+LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55018A57231EBCDB00F7E6ED /* Enum+LoadImage.swift */; };
 		55D0EE11231D2A78003FA995 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EE10231D2A78003FA995 /* AppDelegate.swift */; };
 		55D0EE18231D2A79003FA995 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE17231D2A79003FA995 /* Assets.xcassets */; };
 		55D0EE1B231D2A79003FA995 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE19231D2A79003FA995 /* LaunchScreen.storyboard */; };
@@ -35,7 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		55018A57231EBCDB00F7E6ED /* LoadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
+		55018A57231EBCDB00F7E6ED /* Enum+LoadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enum+LoadImage.swift"; sourceTree = "<group>"; };
 		55D0EE0D231D2A78003FA995 /* MovieList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D0EE10231D2A78003FA995 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55D0EE17231D2A79003FA995 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		55018A56231EBCB200F7E6ED /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				55018A57231EBCDB00F7E6ED /* LoadImage.swift */,
+				55018A57231EBCDB00F7E6ED /* Enum+LoadImage.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -349,7 +349,7 @@
 				55D0EE4F231D2CEF003FA995 /* MovieCell.swift in Sources */,
 				55D0EE45231D2BD6003FA995 /* DetailModels.swift in Sources */,
 				55D0EE44231D2BD6003FA995 /* DetailRouter.swift in Sources */,
-				55018A58231EBCDB00F7E6ED /* LoadImage.swift in Sources */,
+				55018A58231EBCDB00F7E6ED /* Enum+LoadImage.swift in Sources */,
 				55D0EE35231D2BA8003FA995 /* MainModels.swift in Sources */,
 				55D0EE42231D2BD6003FA995 /* DetailPresenter.swift in Sources */,
 				55D0EE63231E4019003FA995 /* MovieRestStore.swift in Sources */,

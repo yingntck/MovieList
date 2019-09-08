@@ -10,7 +10,6 @@ import UIKit
 
 protocol DetailPresenterInterface {
   func presentMovieData(response: Detail.GetMovieData.Response)
-  func presentSetNewVote(response: Detail.SetVote.Response)
 }
 
 class DetailPresenter: DetailPresenterInterface {
@@ -27,14 +26,16 @@ class DetailPresenter: DetailPresenterInterface {
       for i in data.genres {
         categoryArray.append(i.name)
       }
+      if categoryArray == [] {
+        categoryArray.append("None")
+      }
       let categoryList = categoryArray.joined(separator: ", ")
-      
       model = Detail.GetMovieData.ViewModel(title: data.title,
                                   overview: data.overview,
-                                  popularity: "\(data.popularity)",
+                                  popularity: "Popularity: \(data.popularity)",
                                   imageURL: "https://image.tmdb.org/t/p/original\(data.posterPath ?? "")",
                                   category: "Category: \(categoryList)",
-                                  language: "Language: \(data.originalLanguage)")
+                                  language: "Language: \(data.originalLanguage.uppercased())")
     case .failure(let error):
       print("error present detail")
       print(error)
@@ -44,11 +45,5 @@ class DetailPresenter: DetailPresenterInterface {
     }
     viewController.displayMovieData(viewModel: viewModel)
 //    print(viewModel)
-  }
-  
-  func presentSetNewVote(response: Detail.SetVote.Response) {
-    let r = response.voteResult
-    let model = Detail.SetVote.ViewModel(popularity: "\(r)")
-    viewController.displayRating(viewModel: model)
   }
 }

@@ -10,7 +10,6 @@ import UIKit
 
 protocol DetailViewControllerInterface: class {
   func displayMovieData(viewModel: Detail.GetMovieData.ViewModel)
-  func displayRating(viewModel: Detail.SetVote.ViewModel)
 }
 
 class DetailViewController: UIViewController, DetailViewControllerInterface {
@@ -29,6 +28,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   var router: DetailRouter!
   var viewDetail: Detail.GetMovieData.ViewModel?
   var updatePopularity: Detail.SetVote.ViewModel?
+  var mainView: MainViewController?
 
   // MARK: - Object lifecycle
 
@@ -59,6 +59,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   override func viewDidLoad() {
     super.viewDidLoad()
     getMovieData()
+    mainView?.getMovieList()
   }
 
   // MARK: - Event handling
@@ -76,10 +77,6 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
     updateDetail(viewDetail!)
   }
   
-  func displayRating(viewModel: Detail.SetVote.ViewModel) {
-    updatePopularity = viewModel
-    popularityLabel.text = updatePopularity?.popularity
-  }
   
   func updateDetail(_ viewDetail: Detail.GetMovieData.ViewModel) {
     titleLabel.text = viewDetail.title
@@ -89,22 +86,9 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
     categoryLabel.text = viewDetail.category
     posterImageView.loadImageUrl(viewDetail.imageURL)
   }
-    
-  // MARK: - Router
-
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    router.passDataToNextScene(segue: segue)
-  }
-
-  @IBAction func unwindToDetailViewController(from segue: UIStoryboardSegue) {
-    print("unwind...")
-    router.passDataToNextScene(segue: segue)
-  }
   
   @IBAction func buttonTapped(_ sender: UIButton) {
-    print("Rated \(sender.tag) stars.")
-//    let rateView = sender.tag
-//    print(rateView)
+//    print("Rated \(sender.tag) stars.")
     for button in starButton {
       if button.tag > sender.tag {
         button.setBackgroundImage(UIImage.init(named: "star.png"), for: .normal)
@@ -113,6 +97,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
       }
     }
     calculateVote(vote: Double(sender.tag))
+    mainView?.updatePopularity()
   }
   
   // User-Defaults Vote
