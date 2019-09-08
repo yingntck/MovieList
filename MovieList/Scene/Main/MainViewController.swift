@@ -54,13 +54,11 @@ class MainViewController: UIViewController, MainViewControllerInterface {
     
     tableView.mj_footer = MJRefreshAutoNormalFooter()
     tableView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(footerRefresh))
-    
   }
   
   // MARK: - Event handling
   
   func getMovieList() {
-    // NOTE: Ask the Interactor to do some work
     let request = Main.GetMovieList.Request(withUpdateRatingDict: false, isLoading: false)
     interactor.getMovieList(request: request)
   }
@@ -104,17 +102,8 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-//    print("Selected Row: \(indexPath.row)")
+    print("Selected Row: \(indexPath.row)")
     let id = "\(interactor.movieList[indexPath.row].id)"
     router.navigateToDetail(withID: id)
   }
-//
-//  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//    if indexPath.row == (viewData!.count - 1) {
-//      let request = Main.SetLoadMore.Request()
-//      interactor.setCountPage(request: request)
-//      // find lastCell in tableView
-//    }
-//  }
-
 }

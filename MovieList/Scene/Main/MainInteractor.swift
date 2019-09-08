@@ -41,8 +41,10 @@ class MainInteractor: MainInteractorInterface {
         var response: Main.GetMovieList.Response
         switch result {
         case .success(let data):
-          var result: [MovieModel]
-          result = self!.movieList + data.results
+          if let movieList = self?.movieList {
+            self?.movieList = movieList + data.results
+          }
+          guard let result = self?.movieList else { return }
           response = Main.GetMovieList.Response(needUpdateRating: false, result: Result<[MovieModel]>.success(result))
 
         case .failure(let error):
@@ -54,7 +56,6 @@ class MainInteractor: MainInteractorInterface {
       print("feed data normal")
       worker?.getMovieList(page: page, { [weak self] result in
         var response: Main.GetMovieList.Response
-        
         switch result {
         case .success(let data):
           self?.totalPage = data.totalPages
