@@ -9,12 +9,13 @@
 import Foundation
 import Alamofire
 
-class MovieRestStore: MovieStoreProtocol {
+class MovieRestStore: MovieStoreProtocol {  
   
   let urlDetail = "https://api.themoviedb.org/3/movie/%@?api_key=328c283cd27bd1877d9080ccb1604c91"
   
-  func getMovieList(page: Int, _ completion: @escaping (Result<MovieList>) -> Void) {
-    AF.request(URL(string: "http://api.themoviedb.org/3/discover/movie?api_key=328c283cd27bd1877d9080ccb1604c91&primary_release_date.lte=2016-12-31&sort_by=release_date.desc&page=\(page)")!, method: .get).responseJSON { response in
+  func getMovieList(page: Int, sort: SortData, _ completion: @escaping (Result<MovieList>) -> Void) {
+    let sort = sort == .DESC ? "release_date.desc" : "release_date.asc"
+    AF.request(URL(string: "http://api.themoviedb.org/3/discover/movie?api_key=328c283cd27bd1877d9080ccb1604c91&primary_release_date.lte=2016-12-31&sort_by=\(sort)&page=\(page)")!, method: .get).responseJSON { response in
       switch response.result {
       case .success:
         do {

@@ -15,6 +15,11 @@ enum Result<T> {
   case failure(Error)
 }
 
+enum SortData {
+  case ASC
+  case DESC
+}
+
 extension UIImageView {
     
     func loadImageUrl(_ urlString:String) {

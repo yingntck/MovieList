@@ -16,6 +16,7 @@ struct Main {
     struct Request {
       let withUpdateRatingDict: Bool
       let isLoading: Bool
+      let sortType: SortData
     }
     /// Data struct sent to Presenter
     struct Response {
@@ -51,6 +52,7 @@ struct Main {
   struct SetLoadMore {
     /// Data struct sent to Interactor
     struct Request {
+      let sort: SortData
     }
     
     /// Data struct sent to Presenter
@@ -64,19 +66,19 @@ struct Main {
     }
   }
   
-  struct PushToRefresh {
-    /// Data struct sent to Interactor
-    struct Request {
-      let currentPage: Int
-    }
-    
-    /// Data struct sent to Presenter
-    struct Response {
-    }
-    
-    /// Data struct sent to ViewController
-    struct ViewModel {
-    }
-  }
+//  struct PushToRefresh {
+//    /// Data struct sent to Interactor
+//    struct Request {
+//      let currentPage: Int
+//    }
+//
+//    /// Data struct sent to Presenter
+//    struct Response {
+//    }
+//
+//    /// Data struct sent to ViewController
+//    struct ViewModel {
+//    }
+//  }
   
 }
