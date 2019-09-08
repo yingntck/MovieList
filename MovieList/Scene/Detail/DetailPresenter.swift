@@ -26,7 +26,7 @@ class DetailPresenter: DetailPresenterInterface {
       for i in data.genres {
         categoryArray.append(i.name)
       }
-      if categoryArray == [] {
+      if categoryArray.isEmpty {
         categoryArray.append("None")
       }
       let categoryList = categoryArray.joined(separator: ", ")

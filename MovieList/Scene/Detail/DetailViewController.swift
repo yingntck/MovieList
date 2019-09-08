@@ -69,26 +69,9 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
     let request = Detail.GetMovieData.Request()
     interactor.getMovieData(request: request)
   }
-
-  // MARK: - Display logic
-
-  func displayMovieData(viewModel: Detail.GetMovieData.ViewModel) {
-    viewDetail = viewModel
-    updateDetail(viewDetail!)
-  }
-  
-  
-  func updateDetail(_ viewDetail: Detail.GetMovieData.ViewModel) {
-    titleLabel.text = viewDetail.title
-    overviewLabel.text = viewDetail.overview
-    popularityLabel.text = "\(viewDetail.popularity)"
-    languageLabel.text = viewDetail.language
-    categoryLabel.text = viewDetail.category
-    posterImageView.loadImageUrl(viewDetail.imageURL)
-  }
   
   @IBAction func buttonTapped(_ sender: UIButton) {
-//    print("Rated \(sender.tag) stars.")
+    //    print("Rated \(sender.tag) stars.")
     for button in starButton {
       if button.tag > sender.tag {
         button.setBackgroundImage(UIImage.init(named: "star.png"), for: .normal)
@@ -98,6 +81,22 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
     }
     calculateVote(vote: Double(sender.tag))
     mainView?.updatePopularity()
+  }
+
+  // MARK: - Display logic
+
+  func displayMovieData(viewModel: Detail.GetMovieData.ViewModel) {
+    viewDetail = viewModel
+    updateDetail(viewDetail!)
+  }
+  
+  func updateDetail(_ viewDetail: Detail.GetMovieData.ViewModel) {
+    titleLabel.text = viewDetail.title
+    overviewLabel.text = viewDetail.overview
+    popularityLabel.text = "\(viewDetail.popularity)"
+    languageLabel.text = viewDetail.language
+    categoryLabel.text = viewDetail.category
+    posterImageView.loadImageUrl(viewDetail.imageURL)
   }
   
   // User-Defaults Vote

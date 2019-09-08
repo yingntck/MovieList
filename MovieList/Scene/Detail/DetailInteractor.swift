@@ -67,7 +67,5 @@ class DetailInteractor: DetailInteractorInterface {
     }
     voteResult[id] = newVote
     UserDefaults.standard.set(voteResult, forKey: "voteByUser")
-//    let response = Detail.SetVote.Response(voteResult: newVote ?? 0.0)
-//    presenter.presentSetNewVote(response: response)
   }
 }
