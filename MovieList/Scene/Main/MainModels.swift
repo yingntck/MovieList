@@ -27,8 +27,7 @@ struct Main {
     struct ViewModel {
       let title: String
       let popularity: String
-      let voteCount: Int
-      let voteAverage: Double
+      let rating: Double
       let imageURL: String
       let backdropURL: String
     }
@@ -66,19 +65,17 @@ struct Main {
     }
   }
   
-//  struct PushToRefresh {
-//    /// Data struct sent to Interactor
-//    struct Request {
-//      let currentPage: Int
-//    }
-//
-//    /// Data struct sent to Presenter
-//    struct Response {
-//    }
-//
-//    /// Data struct sent to ViewController
-//    struct ViewModel {
-//    }
-//  }
-  
+  struct SetRating {
+    struct Request {
+      let voteUser: Double
+    }
+    /// Data struct sent to Presenter
+    struct Response {
+      let voteResult: Double
+    }
+    /// Data struct sent to ViewController
+    struct ViewModel {
+      let popularity: String
+    }
+  }
 }

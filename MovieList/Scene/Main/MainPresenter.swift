@@ -32,17 +32,22 @@ class MainPresenter: MainPresenterInterface {
           }
           return Main.GetMovieList.ViewModel(title: $0.title,
                                              popularity: "Popularity: \($0.popularity)",
-            voteCount: $0.voteCount,
-            voteAverage: voteAvg,
+            rating: voteAvg,
             imageURL: "https://image.tmdb.org/t/p/original\($0.posterPath ?? "" )" ,
             backdropURL: "https://image.tmdb.org/t/p/original\($0.backdropPath ?? "")" )
         }
       } else {
+        guard let voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double] else { return }
         viewModel = data.map {
+          var voteAvg = $0.voteAverage
+          if let vote = voteResult["\($0.id)"] {
+            voteAvg = vote
+          } else {
+            voteAvg = voteAvg/2
+          }
           return Main.GetMovieList.ViewModel(title: $0.title,
                                              popularity: "Popularity: \($0.popularity)",
-                                             voteCount: $0.voteCount,
-                                             voteAverage: $0.voteAverage,
+                                             rating: voteAvg,
             imageURL: "https://image.tmdb.org/t/p/original\($0.posterPath ?? "" )" ,
             backdropURL: "https://image.tmdb.org/t/p/original\($0.backdropPath ?? "")" )
         }

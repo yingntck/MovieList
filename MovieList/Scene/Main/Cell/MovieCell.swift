@@ -30,7 +30,7 @@ class MovieCell: UITableViewCell {
   func updateUI(_ displayedMovie: Main.GetMovieList.ViewModel) {
     nameLabel.text = displayedMovie.title
     popularityLabel.text = "\(displayedMovie.popularity)"
-    ratingLabel.text = "\(displayedMovie.voteAverage)"
+    ratingLabel.text = "\(displayedMovie.rating)"
     posterImageView.loadImageUrl(displayedMovie.imageURL)
     backdropImageView.loadImageUrl(displayedMovie.backdropURL)
   }

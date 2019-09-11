@@ -11,16 +11,13 @@ import UIKit
 protocol MainInteractorInterface {
   func getMovieList (request: Main.GetMovieList.Request)
   func setCountPage(request: Main.SetLoadMore.Request)
-  //  var model: MovieModel? { get }
   var movieList: [MovieModel] { get }
 }
 
 class MainInteractor: MainInteractorInterface {
-  
   var view: MainViewController!
   var presenter: MainPresenterInterface!
   var worker: MovieWorker?
-  //  var model: MovieModel?
   var moviePage: MovieList?
   var movieList: [MovieModel] = []
   var currentPage: Int = 1
@@ -59,7 +56,7 @@ class MainInteractor: MainInteractorInterface {
         self?.presenter.presentMovieList(response: response)
       }
     } else {
-      print("feed data normal")
+//      print("feed data normal")
       worker?.getMovieList(page: page, sort: sort) { [weak self] result in
         var response: Main.GetMovieList.Response
         switch result {
