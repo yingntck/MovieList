@@ -62,10 +62,9 @@ class DetailInteractor: DetailInteractorInterface {
     let avg = voteAvg ?? 0.0
     newVote = ((((avg*count)+(request.voteUser*2))/(count+1))/2)
     
-    guard var voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double] else {
-      return
-    }
+    var voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double] ?? [:]
     voteResult[id] = newVote
     UserDefaults.standard.set(voteResult, forKey: "voteByUser")
+    
   }
 }

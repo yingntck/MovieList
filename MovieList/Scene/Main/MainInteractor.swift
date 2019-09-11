@@ -33,13 +33,9 @@ class MainInteractor: MainInteractorInterface {
       currentPage = 1
       currentSort = sort
     }
-    // when give rating in detail scene and update rating in main scene
-    if request.withUpdateRatingDict {
-      let response = Main.GetMovieList.Response(needUpdateRating: true, result: Result<[MovieModel]>.success(movieList))
-      self.presenter.presentMovieList(response: response)
-      
-    } else if request.isLoading {
-      print("loading")
+
+    if request.isLoading {
+      //      print("loading")
       worker?.getMovieList(page: page, sort: sort) { [weak self] result in
         var response: Main.GetMovieList.Response
         switch result {
@@ -48,40 +44,40 @@ class MainInteractor: MainInteractorInterface {
             self?.movieList = movieList + data.results
           }
           guard let result = self?.movieList else { return }
-          response = Main.GetMovieList.Response(needUpdateRating: false, result: Result<[MovieModel]>.success(result))
-
+          response = Main.GetMovieList.Response(result: Result<[MovieModel]>.success(result))
+          
         case .failure(let error):
-          response = Main.GetMovieList.Response(needUpdateRating: false, result: Result<[MovieModel]>.failure(error))
+          response = Main.GetMovieList.Response(result: Result<[MovieModel]>.failure(error))
         }
         self?.presenter.presentMovieList(response: response)
       }
     } else {
-//      print("feed data normal")
+      //      print("feed data normal")
       worker?.getMovieList(page: page, sort: sort) { [weak self] result in
         var response: Main.GetMovieList.Response
         switch result {
         case .success(let data):
           self?.totalPage = data.totalPages
           self?.movieList = data.results
-          response = Main.GetMovieList.Response(needUpdateRating: false, result: Result<[MovieModel]>.success(data.results))
+          response = Main.GetMovieList.Response(result: Result<[MovieModel]>.success(data.results))
           
         case .failure(let error):
-          response = Main.GetMovieList.Response(needUpdateRating: false, result: Result<[MovieModel]>.failure(error))
+          response = Main.GetMovieList.Response(result: Result<[MovieModel]>.failure(error))
           print(error)
         }
         self?.presenter.presentMovieList(response: response)
         //          print(response)
       }
     }
-//    print("totalPage: \(totalPage)")
+    //    print("totalPage: \(totalPage)")
   }
   
   func setCountPage(request: Main.SetLoadMore.Request) {
     let sort = request.sort
-    print("page: \(currentPage)")
+    //    print("page: \(currentPage)")
     currentPage += 1
     if currentPage <= totalPage {
-      let request = Main.GetMovieList.Request(withUpdateRatingDict: false, isLoading: true, sortType: sort)
+      let request = Main.GetMovieList.Request(isLoading: true, sortType: sort)
       getMovieList(request: request)
     }
   }

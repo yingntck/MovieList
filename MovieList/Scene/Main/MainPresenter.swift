@@ -18,15 +18,14 @@ class MainPresenter: MainPresenterInterface {
   
   // MARK: - Presentation logic
   func presentMovieList(response: Main.GetMovieList.Response) {
-    
     var viewModel: [Main.GetMovieList.ViewModel] = []
     switch response.result {
     case .success(let data):
-      if response.needUpdateRating {
-        guard let voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double] else { return }
+      if let voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double] {
         print(voteResult)
         viewModel = data.map {
           var voteAvg = $0.voteAverage
+          voteAvg = voteAvg/2
           if let vote = voteResult["\($0.id)"] {
             voteAvg = vote
           }
@@ -37,17 +36,12 @@ class MainPresenter: MainPresenterInterface {
             backdropURL: "https://image.tmdb.org/t/p/original\($0.backdropPath ?? "")" )
         }
       } else {
-        guard let voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double] else { return }
         viewModel = data.map {
           var voteAvg = $0.voteAverage
-          if let vote = voteResult["\($0.id)"] {
-            voteAvg = vote
-          } else {
-            voteAvg = voteAvg/2
-          }
+          voteAvg = voteAvg/2
           return Main.GetMovieList.ViewModel(title: $0.title,
                                              popularity: "Popularity: \($0.popularity)",
-                                             rating: voteAvg,
+            rating: voteAvg,
             imageURL: "https://image.tmdb.org/t/p/original\($0.posterPath ?? "" )" ,
             backdropURL: "https://image.tmdb.org/t/p/original\($0.backdropPath ?? "")" )
         }

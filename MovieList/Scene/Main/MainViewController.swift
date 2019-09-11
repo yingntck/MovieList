@@ -64,13 +64,13 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   }
   
   func getMovieList() {
-    let request = Main.GetMovieList.Request(withUpdateRatingDict: false, isLoading: false, sortType: .DESC)
+    let request = Main.GetMovieList.Request(isLoading: false, sortType: .DESC)
     interactor.getMovieList(request: request)
   }
 
   @objc
   func footerRefresh() {
-    print("Loadmore..")
+//    print("Loadmore..")
     let request = Main.SetLoadMore.Request(sort: sort ?? .DESC)
     interactor.setCountPage(request: request)
   }
@@ -84,13 +84,13 @@ class MainViewController: UIViewController, MainViewControllerInterface {
     let alert = UIAlertController(title: "Sort", message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Old to New (ASC)", style: .default, handler: { _ in
       self.sort = SortData.ASC
-      let request = Main.GetMovieList.Request(withUpdateRatingDict: false, isLoading: false, sortType: .ASC)
+      let request = Main.GetMovieList.Request(isLoading: false, sortType: .ASC)
       self.pushGetMovieListToInteractor(request: request)
     }))
     
     alert.addAction(UIAlertAction(title: "New to Old (DESC)", style: .default, handler: { _ in
       self.sort = SortData.DESC
-      let request = Main.GetMovieList.Request(withUpdateRatingDict: false, isLoading: false, sortType: .DESC)
+      let request = Main.GetMovieList.Request(isLoading: false, sortType: .DESC)
       self.pushGetMovieListToInteractor(request: request)
     }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
@@ -110,7 +110,7 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   func updatePopularity() {
     // เรียก userdefault เพื่อที่จะ get ค่า id กับ rating มา
     // หา id ที่เท่ากันใน interactor เพื่อที่จะ update ค่า rating
-    let request = Main.GetMovieList.Request(withUpdateRatingDict: true, isLoading: false, sortType: .DESC)
+    let request = Main.GetMovieList.Request(isLoading: false, sortType: .DESC)
     interactor.getMovieList(request: request)
   }
 }
@@ -130,7 +130,7 @@ extension MainViewController : UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    print("Selected Row: \(indexPath.row)")
+//    print("Selected Row: \(indexPath.row)")
     let id = "\(interactor.movieList[indexPath.row].id)"
     router.navigateToDetail(withID: id)
   }

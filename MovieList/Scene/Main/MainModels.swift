@@ -14,13 +14,11 @@ struct Main {
   struct GetMovieList {
     /// Data struct sent to Interactor
     struct Request {
-      let withUpdateRatingDict: Bool
       let isLoading: Bool
       let sortType: SortData
     }
     /// Data struct sent to Presenter
     struct Response {
-      let needUpdateRating: Bool
       let result: Result<[MovieModel]>
     }
     /// Data struct sent to ViewController

@@ -71,7 +71,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   }
   
   @IBAction func buttonTapped(_ sender: UIButton) {
-    //    print("Rated \(sender.tag) stars.")
+        print("Rated \(sender.tag) stars.")
     for button in starButton {
       if button.tag > sender.tag {
         button.setBackgroundImage(UIImage.init(named: "star.png"), for: .normal)
