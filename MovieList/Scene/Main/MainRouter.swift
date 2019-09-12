@@ -21,7 +21,7 @@ class MainRouter: MainRouterInput {
     if let detailViewController = UIStoryboard(name: "Detail", bundle: nil).instantiateInitialViewController() as? DetailViewController {
       detailViewController.interactor.id = withID
       // school = student, Main = Cell
-      detailViewController.mainView = viewController
+      detailViewController.mainViewDelegate = viewController
       viewController.navigationController?.pushViewController(detailViewController, animated: true)
       print(withID)
     }

@@ -19,13 +19,16 @@ struct Detail {
     }
     /// Data struct sent to ViewController
     struct ViewModel {
-      let title: String
-      let overview: String
-      let popularity: String
-      let imageURL: String
-      let category: String
-      let language: String
-      let vote: Int
+      let content: Result<DisplayDetail>
+      struct DisplayDetail {
+        let title: String
+        let overview: String
+        let popularity: String
+        let imageURL: String
+        let category: String
+        let language: String
+        let vote: Int
+      }
     }
   }
   

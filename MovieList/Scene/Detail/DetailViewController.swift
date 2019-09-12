@@ -27,8 +27,9 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   var interactor: DetailInteractorInterface!
   var router: DetailRouter!
   var viewDetail: Detail.GetMovieData.ViewModel?
+  // remove
   var updatePopularity: Detail.SetVote.ViewModel?
-  var mainView: MainViewController?
+  weak var mainViewDelegate: UpdatePopDelegate?
 
   // MARK: - Object lifecycle
 
@@ -59,7 +60,6 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   override func viewDidLoad() {
     super.viewDidLoad()
     getMovieData()
-    mainView?.getMovieList()
   }
 
   // MARK: - Event handling
@@ -73,7 +73,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   @IBAction func buttonTapped(_ sender: UIButton) {
     setStar(tag: sender.tag)
     calculateVote(vote: Double(sender.tag))
-    mainView?.updatePopularity()
+    mainViewDelegate?.updatePopularity()
   }
   
   func setStar(tag: Int) {
@@ -95,13 +95,18 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   }
   
   func updateDetail(_ viewDetail: Detail.GetMovieData.ViewModel) {
-    titleLabel.text = viewDetail.title
-    overviewLabel.text = viewDetail.overview
-    popularityLabel.text = "\(viewDetail.popularity)"
-    languageLabel.text = viewDetail.language
-    categoryLabel.text = viewDetail.category
-    posterImageView.loadImageUrl(viewDetail.imageURL)
-    setStar(tag: viewDetail.vote)
+    switch viewDetail.content {
+    case .success(let data):
+      titleLabel.text = data.title
+      overviewLabel.text = data.overview
+      popularityLabel.text = data.popularity
+      languageLabel.text = data.language
+      categoryLabel.text = data.category
+      posterImageView.loadImageUrl(data.imageURL)
+      setStar(tag: data.vote)
+    case .failure(let error):
+      print(error)
+    }
   }
   
   // User-Defaults Vote

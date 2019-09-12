@@ -14,7 +14,7 @@ struct Main {
   struct GetMovieList {
     /// Data struct sent to Interactor
     struct Request {
-      let isLoading: Bool
+      let needLoadMore: Bool
       let sortType: SortData?
     }
     /// Data struct sent to Presenter

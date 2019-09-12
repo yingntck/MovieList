@@ -13,12 +13,16 @@ protocol MainViewControllerInterface: class {
   func displayMovieList(viewModel: [Main.GetMovieList.ViewModel])
 }
 
-class MainViewController: UIViewController, MainViewControllerInterface {
+protocol UpdatePopDelegate: class {
+  func updatePopularity()
+}
+
+class MainViewController: UIViewController, MainViewControllerInterface, UpdatePopDelegate {
   
   var interactor: MainInteractorInterface!
   var router: MainRouter!
   var viewData : [Main.GetMovieList.ViewModel]?
-  var sort: SortData?
+  // remove
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -50,21 +54,24 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
+    setupMovieList()
     getMovieList()
-    
-    tableView.mj_footer = MJRefreshAutoNormalFooter()
-    tableView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(footerRefresh))
   }
   
   // MARK: - Event handling
+  
+  func setupMovieList() {
+    tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: "MovieCell")
+    tableView.mj_footer = MJRefreshAutoNormalFooter()
+    tableView.mj_footer.setRefreshingTarget(self, refreshingAction: #selector(footerRefresh))
+  }
   
   @IBAction func sortButton(_ sender: Any) {
     showSortingAlert()
   }
   
   func getMovieList() {
-    let request = Main.GetMovieList.Request(isLoading: false, sortType: .DESC)
+    let request = Main.GetMovieList.Request(needLoadMore: false, sortType: .DESC)
     interactor.getMovieList(request: request)
   }
 
@@ -72,7 +79,7 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   func footerRefresh() {
 //    print("Loadmore..")
     let request = Main.SetLoadMore.Request()
-    interactor.setCountPage(request: request)
+    interactor.loadmorePage(request: request)
   }
   
   func pushGetMovieListToInteractor(request: Main.GetMovieList.Request) {
@@ -83,12 +90,12 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   func showSortingAlert() {
     let alert = UIAlertController(title: "Sort", message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Old to New (ASC)", style: .default, handler: { [weak self] _ in
-      let request = Main.GetMovieList.Request(isLoading: false, sortType: .ASC)
+      let request = Main.GetMovieList.Request(needLoadMore: false, sortType: .ASC)
       self?.pushGetMovieListToInteractor(request: request)
     }))
     
     alert.addAction(UIAlertAction(title: "New to Old (DESC)", style: .default, handler: { [weak self] _ in
-      let request = Main.GetMovieList.Request(isLoading: false, sortType: .DESC)
+      let request = Main.GetMovieList.Request(needLoadMore: false, sortType: .DESC)
       self?.pushGetMovieListToInteractor(request: request)
     }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
@@ -108,8 +115,10 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   func updatePopularity() {
     // เรียก userdefault เพื่อที่จะ get ค่า id กับ rating มา
     // หา id ที่เท่ากันใน interactor เพื่อที่จะ update ค่า rating
-    let request = Main.GetMovieList.Request(isLoading: false, sortType: .DESC)
-    interactor.getMovieList(request: request)
+    let request = Main.GetMovieList.Request(needLoadMore: false, sortType: .DESC)
+//    interactor.getMovieList(request: request)
+    interactor.updateVote(request: request)
+    
   }
 }
 

@@ -23,6 +23,8 @@ class MainPresenter: MainPresenterInterface {
     case .success(let data):
       if let voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double] {
         print(voteResult)
+        
+        // remove duplicate code
         viewModel = data.map {
           var voteAvg = $0.voteAverage
           voteAvg = voteAvg/2

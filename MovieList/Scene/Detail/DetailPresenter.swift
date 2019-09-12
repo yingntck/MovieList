@@ -34,17 +34,17 @@ class DetailPresenter: DetailPresenterInterface {
       
       let lastVote = UserDefaults.standard.object(forKey: "lastVoteByUser") as? [String: Int]
         let voteUser = lastVote?["\(data.id)"] ?? 0
-        
-        model = Detail.GetMovieData.ViewModel(title: data.title,
+      
+        let displayDetail = Detail.GetMovieData.ViewModel.DisplayDetail(title: data.title,
                                     overview: data.overview,
                                     popularity: "Popularity: \(data.popularity)",
                                     imageURL: "https://image.tmdb.org/t/p/original\(data.posterPath ?? "")",
                                     category: "Category: \(categoryList)",
                                     language: "Language: \(data.originalLanguage.uppercased())",
                                     vote: voteUser)
+      model = Detail.GetMovieData.ViewModel(content: Result<Detail.GetMovieData.ViewModel.DisplayDetail>.success(displayDetail))
     
     case .failure(let error):
-      print("error present detail")
       print(error)
     }
     guard let viewModel = model else {

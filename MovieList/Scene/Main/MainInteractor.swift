@@ -10,7 +10,8 @@ import UIKit
 
 protocol MainInteractorInterface {
   func getMovieList (request: Main.GetMovieList.Request)
-  func setCountPage(request: Main.SetLoadMore.Request)
+  func loadmorePage(request: Main.SetLoadMore.Request)
+  func updateVote(request: Main.GetMovieList.Request)
   var movieList: [MovieModel] { get }
 }
 
@@ -22,7 +23,7 @@ class MainInteractor: MainInteractorInterface {
   var movieList: [MovieModel] = []
   var currentPage: Int = 1
   var totalPage: Int = 0
-  var currentSort: SortData = .DESC
+  var currentSort: SortData?
   
   // MARK: - Business logic
   func getMovieList(request: Main.GetMovieList.Request) {
@@ -32,10 +33,13 @@ class MainInteractor: MainInteractorInterface {
       page = 1
       currentPage = 1
       currentSort = sort
+    } else if currentSort == sort && !request.needLoadMore {
+      return
     }
 //    print("\(page) \(sort)")
-    if request.isLoading {
-      worker?.getMovieList(page: page, sort: sort) { [weak self] result in
+    // needLoadMore
+    if request.needLoadMore {
+      worker?.getMovieList(page: page, sort: sort ?? .DESC) { [weak self] result in
         var response: Main.GetMovieList.Response
         switch result {
         case .success(let data):
@@ -52,7 +56,7 @@ class MainInteractor: MainInteractorInterface {
       }
     } else {
       //      print("feed data normal")
-      worker?.getMovieList(page: page, sort: sort) { [weak self] result in
+      worker?.getMovieList(page: page, sort: sort ?? .DESC) { [weak self] result in
         var response: Main.GetMovieList.Response
         switch result {
         case .success(let data):
@@ -65,19 +69,24 @@ class MainInteractor: MainInteractorInterface {
           print(error)
         }
         self?.presenter.presentMovieList(response: response)
-        //          print(response)
       }
     }
-    //    print("totalPage: \(totalPage)")
   }
   
-  func setCountPage(request: Main.SetLoadMore.Request) {
+  // loadmore
+  func loadmorePage(request: Main.SetLoadMore.Request) {
     currentPage += 1
 //    print("page: \(currentPage)")
     if currentPage <= totalPage {
-      let request = Main.GetMovieList.Request(isLoading: true, sortType: nil)
+      let request = Main.GetMovieList.Request(needLoadMore: true, sortType: nil)
       getMovieList(request: request)
     }
   }
   
+  func updateVote(request: Main.GetMovieList.Request) {
+    var response: Main.GetMovieList.Response
+    response = Main.GetMovieList.Response(result: Result<[MovieModel]>.success(movieList))
+    
+    presenter.presentMovieList(response: response)
+  }
 }

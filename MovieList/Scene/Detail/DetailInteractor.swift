@@ -13,12 +13,7 @@ protocol DetailInteractorInterface {
   func calculateVote(request: Detail.SetVote.Request)
   
   var model: DetailModel? { get }
-  var selectedMovie: DetailModel? { get set }
   var id: String? { get set }
-  var voteCount: Int? { get set }
-  var voteAvg: Double? { get set }
-  var newVote: Double? { get set }
-  var selectedStar: Int? { get set }
 }
 
 class DetailInteractor: DetailInteractorInterface {
