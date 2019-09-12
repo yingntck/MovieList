@@ -71,16 +71,20 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   }
   
   @IBAction func buttonTapped(_ sender: UIButton) {
-        print("Rated \(sender.tag) stars.")
+    setStar(tag: sender.tag)
+    calculateVote(vote: Double(sender.tag))
+    mainView?.updatePopularity()
+  }
+  
+  func setStar(tag: Int) {
+    print("Rated \(tag) stars.")
     for button in starButton {
-      if button.tag > sender.tag {
+      if button.tag > tag {
         button.setBackgroundImage(UIImage.init(named: "star.png"), for: .normal)
       } else {
         button.setBackgroundImage(UIImage.init(named: "star-tap.png"), for: .normal)
       }
     }
-    calculateVote(vote: Double(sender.tag))
-    mainView?.updatePopularity()
   }
 
   // MARK: - Display logic

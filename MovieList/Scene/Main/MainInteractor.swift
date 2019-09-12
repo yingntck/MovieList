@@ -74,7 +74,7 @@ class MainInteractor: MainInteractorInterface {
   
   func setCountPage(request: Main.SetLoadMore.Request) {
     let sort = request.sort
-    //    print("page: \(currentPage)")
+    print("page: \(currentPage)")
     currentPage += 1
     if currentPage <= totalPage {
       let request = Main.GetMovieList.Request(isLoading: true, sortType: sort)

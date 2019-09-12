@@ -30,12 +30,18 @@ class DetailPresenter: DetailPresenterInterface {
         categoryArray.append("None")
       }
       let categoryList = categoryArray.joined(separator: ", ")
+      
+      if let lastVote = UserDefaults.standard.object(forKey: "lastVoteByUser") as? [String: Int] {
+        print(lastVote)
+      }
+      
       model = Detail.GetMovieData.ViewModel(title: data.title,
                                   overview: data.overview,
                                   popularity: "Popularity: \(data.popularity)",
                                   imageURL: "https://image.tmdb.org/t/p/original\(data.posterPath ?? "")",
                                   category: "Category: \(categoryList)",
                                   language: "Language: \(data.originalLanguage.uppercased())")
+      
     case .failure(let error):
       print("error present detail")
       print(error)

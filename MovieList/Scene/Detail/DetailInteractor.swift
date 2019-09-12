@@ -18,9 +18,11 @@ protocol DetailInteractorInterface {
   var voteCount: Int? { get set }
   var voteAvg: Double? { get set }
   var newVote: Double? { get set }
+  var selectedStar: Int? { get set }
 }
 
 class DetailInteractor: DetailInteractorInterface {
+  var selectedStar: Int?
   var selectedMovie: DetailModel?
   var voteCount: Int?
   var voteAvg: Double?
@@ -61,10 +63,14 @@ class DetailInteractor: DetailInteractorInterface {
     voteAvg = selectedMovie?.voteAverage
     let avg = voteAvg ?? 0.0
     newVote = ((((avg*count)+(request.voteUser*2))/(count+1))/2)
+    selectedStar = Int(request.voteUser)
     
     var voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double] ?? [:]
     voteResult[id] = newVote
     UserDefaults.standard.set(voteResult, forKey: "voteByUser")
     
+    var lastVote = UserDefaults.standard.object(forKey: "lastVoteByUser") as? [String: Int] ?? [:]
+    lastVote[id] = selectedStar
+    UserDefaults.standard.set(lastVote, forKey: "lastVoteByUser")
   }
 }
