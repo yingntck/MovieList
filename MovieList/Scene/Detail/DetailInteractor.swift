@@ -57,7 +57,7 @@ class DetailInteractor: DetailInteractorInterface {
     let count = Double(voteCount ?? 0)
     voteAvg = selectedMovie?.voteAverage
     let avg = voteAvg ?? 0.0
-    newVote = ((((avg*count)+(request.voteUser*2))/(count+1))/2)
+    newVote = ((( (avg*count) + (request.voteUser * 2) ) / (count+1) ) / 2)
     selectedStar = Int(request.voteUser)
     
     var voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double] ?? [:]

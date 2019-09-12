@@ -22,7 +22,6 @@ class MainViewController: UIViewController, MainViewControllerInterface, UpdateP
   var interactor: MainInteractorInterface!
   var router: MainRouter!
   var viewData : [Main.GetMovieList.ViewModel]?
-  // remove
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -116,7 +115,6 @@ class MainViewController: UIViewController, MainViewControllerInterface, UpdateP
     // เรียก userdefault เพื่อที่จะ get ค่า id กับ rating มา
     // หา id ที่เท่ากันใน interactor เพื่อที่จะ update ค่า rating
     let request = Main.GetMovieList.Request(needLoadMore: false, sortType: .DESC)
-//    interactor.getMovieList(request: request)
     interactor.updateVote(request: request)
     
   }

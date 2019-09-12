@@ -27,11 +27,9 @@ class MovieRestStore: MovieStoreProtocol {
           print("error case success movie list")
           print(error)
         }
-        break
       case let .failure(error):
         print("error case failure movie list")
         print(error)
-        break
       }
     }
   }
@@ -49,11 +47,9 @@ class MovieRestStore: MovieStoreProtocol {
           print("error case success movie data")
           print(error)
         }
-        break
       case let .failure(error):
         print("error case failure movie data")
         print(error)
-        break
       }
     }
   }

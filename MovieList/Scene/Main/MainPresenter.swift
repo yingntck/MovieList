@@ -21,14 +21,10 @@ class MainPresenter: MainPresenterInterface {
     var viewModel: [Main.GetMovieList.ViewModel] = []
     switch response.result {
     case .success(let data):
-      if let voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double] {
-        print(voteResult)
-        
-        // remove duplicate code
+      let voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double]
         viewModel = data.map {
-          var voteAvg = $0.voteAverage
-          voteAvg = voteAvg/2
-          if let vote = voteResult["\($0.id)"] {
+          var voteAvg = $0.voteAverage / 2
+          if let vote = voteResult?["\($0.id)"] {
             voteAvg = vote
           }
           return Main.GetMovieList.ViewModel(title: $0.title,
@@ -37,17 +33,6 @@ class MainPresenter: MainPresenterInterface {
             imageURL: "https://image.tmdb.org/t/p/original\($0.posterPath ?? "" )" ,
             backdropURL: "https://image.tmdb.org/t/p/original\($0.backdropPath ?? "")" )
         }
-      } else {
-        viewModel = data.map {
-          var voteAvg = $0.voteAverage
-          voteAvg = voteAvg/2
-          return Main.GetMovieList.ViewModel(title: $0.title,
-                                             popularity: "Popularity: \($0.popularity)",
-            rating: voteAvg,
-            imageURL: "https://image.tmdb.org/t/p/original\($0.posterPath ?? "" )" ,
-            backdropURL: "https://image.tmdb.org/t/p/original\($0.backdropPath ?? "")" )
-        }
-      }
     case .failure(let error):
       print("error")
       print(error)

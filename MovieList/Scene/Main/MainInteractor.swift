@@ -73,7 +73,6 @@ class MainInteractor: MainInteractorInterface {
     }
   }
   
-  // loadmore
   func loadmorePage(request: Main.SetLoadMore.Request) {
     currentPage += 1
 //    print("page: \(currentPage)")
