@@ -77,7 +77,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
   }
   
   func setStar(tag: Int) {
-    print("Rated \(tag) stars.")
+//    print("Rated \(tag) stars.")
     for button in starButton {
       if button.tag > tag {
         button.setBackgroundImage(UIImage.init(named: "star.png"), for: .normal)
@@ -101,6 +101,7 @@ class DetailViewController: UIViewController, DetailViewControllerInterface {
     languageLabel.text = viewDetail.language
     categoryLabel.text = viewDetail.category
     posterImageView.loadImageUrl(viewDetail.imageURL)
+    setStar(tag: viewDetail.vote)
   }
   
   // User-Defaults Vote

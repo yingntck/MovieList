@@ -34,4 +34,10 @@ class MovieCell: UITableViewCell {
     posterImageView.loadImageUrl(displayedMovie.imageURL)
     backdropImageView.loadImageUrl(displayedMovie.backdropURL)
   }
+  
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    posterImageView.image = nil
+    backdropImageView.image = nil
+  }
 }

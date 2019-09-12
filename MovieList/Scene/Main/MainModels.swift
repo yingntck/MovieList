@@ -15,7 +15,7 @@ struct Main {
     /// Data struct sent to Interactor
     struct Request {
       let isLoading: Bool
-      let sortType: SortData
+      let sortType: SortData?
     }
     /// Data struct sent to Presenter
     struct Response {
@@ -49,7 +49,6 @@ struct Main {
   struct SetLoadMore {
     /// Data struct sent to Interactor
     struct Request {
-      let sort: SortData
     }
     
     /// Data struct sent to Presenter

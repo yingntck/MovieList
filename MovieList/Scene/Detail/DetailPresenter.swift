@@ -22,6 +22,7 @@ class DetailPresenter: DetailPresenterInterface {
     var model: Detail.GetMovieData.ViewModel?
     switch response.movie {
     case .success(let data):
+      // join list of Category
       var categoryArray : Array<String> = []
       for i in data.genres {
         categoryArray.append(i.name)
@@ -31,17 +32,17 @@ class DetailPresenter: DetailPresenterInterface {
       }
       let categoryList = categoryArray.joined(separator: ", ")
       
-      if let lastVote = UserDefaults.standard.object(forKey: "lastVoteByUser") as? [String: Int] {
-        print(lastVote)
-      }
-      
-      model = Detail.GetMovieData.ViewModel(title: data.title,
-                                  overview: data.overview,
-                                  popularity: "Popularity: \(data.popularity)",
-                                  imageURL: "https://image.tmdb.org/t/p/original\(data.posterPath ?? "")",
-                                  category: "Category: \(categoryList)",
-                                  language: "Language: \(data.originalLanguage.uppercased())")
-      
+      let lastVote = UserDefaults.standard.object(forKey: "lastVoteByUser") as? [String: Int]
+        let voteUser = lastVote?["\(data.id)"] ?? 0
+        
+        model = Detail.GetMovieData.ViewModel(title: data.title,
+                                    overview: data.overview,
+                                    popularity: "Popularity: \(data.popularity)",
+                                    imageURL: "https://image.tmdb.org/t/p/original\(data.posterPath ?? "")",
+                                    category: "Category: \(categoryList)",
+                                    language: "Language: \(data.originalLanguage.uppercased())",
+                                    vote: voteUser)
+    
     case .failure(let error):
       print("error present detail")
       print(error)
@@ -50,6 +51,5 @@ class DetailPresenter: DetailPresenterInterface {
       return
     }
     viewController.displayMovieData(viewModel: viewModel)
-//    print(viewModel)
   }
 }

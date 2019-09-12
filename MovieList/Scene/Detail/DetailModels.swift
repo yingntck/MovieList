@@ -25,6 +25,7 @@ struct Detail {
       let imageURL: String
       let category: String
       let language: String
+      let vote: Int
     }
   }
   

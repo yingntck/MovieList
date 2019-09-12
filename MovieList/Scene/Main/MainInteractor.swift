@@ -22,20 +22,19 @@ class MainInteractor: MainInteractorInterface {
   var movieList: [MovieModel] = []
   var currentPage: Int = 1
   var totalPage: Int = 0
-  var currentSort: SortData?
+  var currentSort: SortData = .DESC
   
   // MARK: - Business logic
   func getMovieList(request: Main.GetMovieList.Request) {
     var page = currentPage
-    let sort = request.sortType
+    let sort = request.sortType ?? currentSort
     if currentSort != sort {
       page = 1
       currentPage = 1
       currentSort = sort
     }
-
+//    print("\(page) \(sort)")
     if request.isLoading {
-      //      print("loading")
       worker?.getMovieList(page: page, sort: sort) { [weak self] result in
         var response: Main.GetMovieList.Response
         switch result {
@@ -73,11 +72,10 @@ class MainInteractor: MainInteractorInterface {
   }
   
   func setCountPage(request: Main.SetLoadMore.Request) {
-    let sort = request.sort
-    print("page: \(currentPage)")
     currentPage += 1
+//    print("page: \(currentPage)")
     if currentPage <= totalPage {
-      let request = Main.GetMovieList.Request(isLoading: true, sortType: sort)
+      let request = Main.GetMovieList.Request(isLoading: true, sortType: nil)
       getMovieList(request: request)
     }
   }

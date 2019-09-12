@@ -71,7 +71,7 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   @objc
   func footerRefresh() {
 //    print("Loadmore..")
-    let request = Main.SetLoadMore.Request(sort: sort ?? .DESC)
+    let request = Main.SetLoadMore.Request()
     interactor.setCountPage(request: request)
   }
   
@@ -82,14 +82,14 @@ class MainViewController: UIViewController, MainViewControllerInterface {
   
   func showSortingAlert() {
     let alert = UIAlertController(title: "Sort", message: nil, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Old to New (ASC)", style: .default, handler: { _ in
+    alert.addAction(UIAlertAction(title: "Old to New (ASC)", style: .default, handler: { [weak self] _ in
       let request = Main.GetMovieList.Request(isLoading: false, sortType: .ASC)
-      self.pushGetMovieListToInteractor(request: request)
+      self?.pushGetMovieListToInteractor(request: request)
     }))
     
-    alert.addAction(UIAlertAction(title: "New to Old (DESC)", style: .default, handler: { _ in
+    alert.addAction(UIAlertAction(title: "New to Old (DESC)", style: .default, handler: { [weak self] _ in
       let request = Main.GetMovieList.Request(isLoading: false, sortType: .DESC)
-      self.pushGetMovieListToInteractor(request: request)
+      self?.pushGetMovieListToInteractor(request: request)
     }))
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
     }))
