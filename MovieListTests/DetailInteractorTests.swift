@@ -67,7 +67,7 @@ class DetailInteractorTests: XCTestCase {
     // When
     sut.getMovieData(request: request)
     // Then
-    XCTAssert(spyPresenter.presentMovieDataCelled)
+    XCTAssertTrue(spyPresenter.presentMovieDataCelled)
   }
   
   func testDisplayMovieDataFailure() {
@@ -82,7 +82,7 @@ class DetailInteractorTests: XCTestCase {
     // When
     sut.getMovieData(request: request)
     // Then
-    XCTAssert(spyPresenter.presentMovieDataCelled)
+    XCTAssertTrue(spyPresenter.presentMovieDataCelled)
   }
   
   func testDisplayMovieDataIdIsNil() {

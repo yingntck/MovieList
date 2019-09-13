@@ -52,7 +52,7 @@ class DetailPresenterTests: XCTestCase {
     // When
     sut.presentMovieData(response: Detail.GetMovieData.Response(movie: Result<DetailModel>.success(DetailModel(adult: false, backdropPath: "", belongsToCollection: nil, budget: 0, genres: [Genre(id: 1, name: "Comedy")], homepage: "", id: 11, imdbID: "", originalLanguage: "", originalTitle: "Discolocos", overview: "The high energy movement in Mexico", popularity: 2.0, posterPath: "", productionCompanies: nil, productionCountries: nil, releaseDate: "2016-12-31", revenue: 0, runtime: 101, spokenLanguages: [SpokenLanguage(iso639_1: "EN", name: "English")], status: "Released", tagline: "", title: "Discolocos", video: false, voteAverage: 4.5, voteCount: 5))))
     // Then
-    XCTAssert(spyDetailView.displayMovieDataCalled)
+    XCTAssertTrue(spyDetailView.displayMovieDataCalled)
   }
   
   func testGetMovieDataFailure() {
@@ -63,7 +63,7 @@ class DetailPresenterTests: XCTestCase {
     // When
     sut.presentMovieData(response: Detail.GetMovieData.Response(movie: Result<DetailModel>.failure(NSError(domain: "", code: 0, userInfo: nil))))
     // Then
-    XCTAssert(spyDetailView.displayMovieDataCalled)
+    XCTAssertTrue(spyDetailView.displayMovieDataCalled)
   }
   
   func testGetMovieDataIfCategoryArrayIsNil() {
@@ -74,7 +74,7 @@ class DetailPresenterTests: XCTestCase {
     // When
     sut.presentMovieData(response: Detail.GetMovieData.Response(movie: Result<DetailModel>.success(DetailModel(adult: false, backdropPath: "", belongsToCollection: nil, budget: 0, genres: [], homepage: "", id: 11, imdbID: "", originalLanguage: "", originalTitle: "Discolocos", overview: "The high energy movement in Mexico", popularity: 2.0, posterPath: "", productionCompanies: nil, productionCountries: nil, releaseDate: "2016-12-31", revenue: 0, runtime: 101, spokenLanguages: [SpokenLanguage(iso639_1: "EN", name: "English")], status: "Released", tagline: "", title: "Discolocos", video: false, voteAverage: 4.5, voteCount: 5))))
     // Then
-    XCTAssert(spyDetailView.displayMovieDataCalled)
+    XCTAssertTrue(spyDetailView.displayMovieDataCalled)
   }
   
 }

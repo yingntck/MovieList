@@ -68,9 +68,9 @@ class MainInteractorTests: XCTestCase {
     // When
     sut.getMovieList(request: request)
     // Then
-    XCTAssert(spyPresenter.presentMovieListCalled)
+    XCTAssertTrue(spyPresenter.presentMovieListCalled)
     XCTAssertEqual(sut.currentSort, .DESC)
-    XCTAssert(spyWorker.workerCalled)
+    XCTAssertTrue(spyWorker.workerCalled)
   }
   
   func testGetMovieListCalledFailure() {
@@ -85,7 +85,7 @@ class MainInteractorTests: XCTestCase {
     // When
     sut.getMovieList(request: request)
     // Then
-    XCTAssert(spyPresenter.presentMovieListCalled)
+    XCTAssertTrue(spyPresenter.presentMovieListCalled)
   }
   
   func testLoadMoreSuccess() {
@@ -101,7 +101,7 @@ class MainInteractorTests: XCTestCase {
     // When
     sut.loadmorePage(request: request)
     // Then
-    XCTAssert(spyPresenter.presentMovieListCalled)
+    XCTAssertTrue(spyPresenter.presentMovieListCalled)
   }
   
   func testLoadMoreFailure() {
@@ -119,7 +119,7 @@ class MainInteractorTests: XCTestCase {
     // When
     sut.loadmorePage(request: request)
     // Then
-    XCTAssert(spyPresenter.presentMovieListCalled)
+    XCTAssertTrue(spyPresenter.presentMovieListCalled)
   }
   
   func testLoadMoreWhenCurrentPageMoreThanTotalPage() {
@@ -150,7 +150,7 @@ class MainInteractorTests: XCTestCase {
     // When
     sut.updateVote(request: request)
     // Then
-    XCTAssert(spyPresenter.presentMovieListCalled)
+    XCTAssertTrue(spyPresenter.presentMovieListCalled)
   }
   
 }
