@@ -46,6 +46,7 @@ class DetailPresenter: DetailPresenterInterface {
     
     case .failure(let error):
       print(error)
+      model = Detail.GetMovieData.ViewModel(content: Result<Detail.GetMovieData.ViewModel.DisplayDetail>.failure(error))
     }
     guard let viewModel = model else {
       return

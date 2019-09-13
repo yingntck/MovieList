@@ -22,6 +22,7 @@ class MainPresenter: MainPresenterInterface {
     switch response.result {
     case .success(let data):
       let voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double]
+      print(voteResult ?? 0)
         viewModel = data.map {
           var voteAvg = $0.voteAverage / 2
           if let vote = voteResult?["\($0.id)"] {
@@ -33,6 +34,7 @@ class MainPresenter: MainPresenterInterface {
             imageURL: "https://image.tmdb.org/t/p/original\($0.posterPath ?? "" )" ,
             backdropURL: "https://image.tmdb.org/t/p/original\($0.backdropPath ?? "")" )
         }
+      
     case .failure(let error):
       print("error")
       print(error)

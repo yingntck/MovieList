@@ -85,7 +85,6 @@ class MainInteractor: MainInteractorInterface {
   func updateVote(request: Main.GetMovieList.Request) {
     var response: Main.GetMovieList.Response
     response = Main.GetMovieList.Response(result: Result<[MovieModel]>.success(movieList))
-    
     presenter.presentMovieList(response: response)
   }
 }

@@ -54,7 +54,7 @@ class MainPresenterTests: XCTestCase {
     // Then
     XCTAssertTrue(spy.displayMovieListCalled)
 //    print(spy.displayMovieListCalled)
-//    print("data: \(spy.data)")
+    print("data: \(spy.data)")
 //    XCTAssert(spy.data.isEmpty)
 //    let data = 5
 //    XCTAssertEqual(data, 5, "Data must be 5")

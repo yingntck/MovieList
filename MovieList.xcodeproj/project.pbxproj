@@ -11,6 +11,8 @@
 		55B01A8C232A5FF900385BC3 /* MovieListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B01A8B232A5FF900385BC3 /* MovieListTests.swift */; };
 		55B01A95232A601400385BC3 /* MainInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B01A93232A601400385BC3 /* MainInteractorTests.swift */; };
 		55B01A96232A601400385BC3 /* MainPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B01A94232A601400385BC3 /* MainPresenterTests.swift */; };
+		55B01A9A232B71FE00385BC3 /* DetailInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B01A98232B71FE00385BC3 /* DetailInteractorTests.swift */; };
+		55B01A9B232B71FE00385BC3 /* DetailPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B01A99232B71FE00385BC3 /* DetailPresenterTests.swift */; };
 		55D0EE11231D2A78003FA995 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D0EE10231D2A78003FA995 /* AppDelegate.swift */; };
 		55D0EE18231D2A79003FA995 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE17231D2A79003FA995 /* Assets.xcassets */; };
 		55D0EE1B231D2A79003FA995 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55D0EE19231D2A79003FA995 /* LaunchScreen.storyboard */; };
@@ -54,6 +56,8 @@
 		55B01A8D232A5FF900385BC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B01A93232A601400385BC3 /* MainInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractorTests.swift; sourceTree = "<group>"; };
 		55B01A94232A601400385BC3 /* MainPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenterTests.swift; sourceTree = "<group>"; };
+		55B01A98232B71FE00385BC3 /* DetailInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractorTests.swift; sourceTree = "<group>"; };
+		55B01A99232B71FE00385BC3 /* DetailPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenterTests.swift; sourceTree = "<group>"; };
 		55D0EE0D231D2A78003FA995 /* MovieList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D0EE10231D2A78003FA995 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55D0EE17231D2A79003FA995 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 				55B01A8D232A5FF900385BC3 /* Info.plist */,
 				55B01A93232A601400385BC3 /* MainInteractorTests.swift */,
 				55B01A94232A601400385BC3 /* MainPresenterTests.swift */,
+				55B01A98232B71FE00385BC3 /* DetailInteractorTests.swift */,
+				55B01A99232B71FE00385BC3 /* DetailPresenterTests.swift */,
 			);
 			path = MovieListTests;
 			sourceTree = "<group>";
@@ -415,6 +421,8 @@
 				55B01A96232A601400385BC3 /* MainPresenterTests.swift in Sources */,
 				55B01A8C232A5FF900385BC3 /* MovieListTests.swift in Sources */,
 				55B01A95232A601400385BC3 /* MainInteractorTests.swift in Sources */,
+				55B01A9B232B71FE00385BC3 /* DetailPresenterTests.swift in Sources */,
+				55B01A9A232B71FE00385BC3 /* DetailInteractorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

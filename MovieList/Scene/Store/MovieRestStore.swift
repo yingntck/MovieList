@@ -23,6 +23,7 @@ class MovieRestStore: MovieStoreProtocol {
           let decoder = JSONDecoder()
           let result = try decoder.decode(MovieList.self, from: response.data!)
           completion(.success(result))
+//          print(result)
         } catch let error {
           print("error case success movie list")
           print(error)

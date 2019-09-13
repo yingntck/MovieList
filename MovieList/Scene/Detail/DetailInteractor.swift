@@ -38,7 +38,7 @@ class DetailInteractor: DetailInteractorInterface {
       switch result {
       case .success(let data):
         self?.selectedMovie = data
-//        print(data)
+        print(data)
         response = Detail.GetMovieData.Response(movie: Result<DetailModel>.success(data))
       case .failure(let error):
         response = Detail.GetMovieData.Response(movie: Result<DetailModel>.failure(error))

@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieList/Scene/Detail/DetailViewController.swift"
-            timestampString = "589976618.5500799"
+            timestampString = "590063603.4812289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieList/Scene/Detail/DetailViewController.swift"
-            timestampString = "589976618.550145"
+            timestampString = "590063603.481496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieList/Scene/Detail/DetailViewController.swift"
-            timestampString = "589976618.550189"
+            timestampString = "590063603.481545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieList/Scene/Detail/DetailViewController.swift"
-            timestampString = "589976618.550231"
+            timestampString = "590063603.4815871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
@@ -73,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MovieList/Scene/Detail/DetailInteractor.swift"
-            timestampString = "589976618.550276"
+            filePath = "MovieList/Scene/Main/MainInteractor.swift"
+            timestampString = "590063603.481631"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "calculateVote(request:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "getMovieList(request:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,13 +89,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MovieList/Scene/Detail/DetailPresenter.swift"
-            timestampString = "589976618.550319"
+            filePath = "MovieList/Scene/Detail/DetailInteractor.swift"
+            timestampString = "590063603.481815"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "presentMovieData(response:)"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getMovieData(request:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MovieList/Scene/Detail/DetailInteractor.swift"
+            timestampString = "590063603.481997"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "calculateVote(request:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -31,21 +31,6 @@ struct Main {
     }
   }
   
-  struct UpdateRating {
-    /// Data struct sent to Interactor
-    struct Request {
-      let dict: [String: Double]
-    }
-    /// Data struct sent to Presenter
-    struct Response {
-      let popularityRes: String
-    }
-    /// Data struct sent to ViewController
-    struct ViewModel {
-      let popularity: String
-    }
-  }
-  
   struct SetLoadMore {
     /// Data struct sent to Interactor
     struct Request {
@@ -59,20 +44,6 @@ struct Main {
     
     /// Data struct sent to ViewController
     struct ViewModel {
-    }
-  }
-  
-  struct SetRating {
-    struct Request {
-      let voteUser: Double
-    }
-    /// Data struct sent to Presenter
-    struct Response {
-      let voteResult: Double
-    }
-    /// Data struct sent to ViewController
-    struct ViewModel {
-      let popularity: String
     }
   }
 }
