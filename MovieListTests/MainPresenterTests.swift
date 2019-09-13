@@ -15,7 +15,7 @@ class MainPresenterTests: XCTestCase {
     var displayMovieListCalled = false
     var data:[Main.GetMovieList.ViewModel] = [] // capture data
     func displayMovieList(viewModel: [Main.GetMovieList.ViewModel]) {
-//      data = viewModel
+      data = viewModel
       displayMovieListCalled = true
     }
   }
@@ -54,7 +54,7 @@ class MainPresenterTests: XCTestCase {
     // Then
     XCTAssertTrue(spy.displayMovieListCalled)
 //    print(spy.displayMovieListCalled)
-    print("data: \(spy.data)")
+//    print("data: \(spy.data)")
 //    XCTAssert(spy.data.isEmpty)
 //    let data = 5
 //    XCTAssertEqual(data, 5, "Data must be 5")
@@ -67,7 +67,7 @@ class MainPresenterTests: XCTestCase {
     // When
     sut.presentMovieList(response: Main.GetMovieList.Response(result: .failure(NSError(domain: "", code: 0, userInfo: nil))))
     // Then
-    XCTAssert(spy.displayMovieListCalled)
+    XCTAssertEqual(spy.displayMovieListCalled, true)
   }
   
 //  func testData() {

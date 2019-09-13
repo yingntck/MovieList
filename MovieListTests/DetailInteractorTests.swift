@@ -85,6 +85,21 @@ class DetailInteractorTests: XCTestCase {
     XCTAssert(spyPresenter.presentMovieDataCelled)
   }
   
+  func testDisplayMovieDataIdIsNil() {
+    // Given
+    let spyPresenter = SpyDetailPresenter()
+    sut.presenter = spyPresenter
+    let spyWorker = SpyDetailWorker(store: MovieRestStore())
+    sut.worker = spyWorker
+    let request = Detail.GetMovieData.Request()
+    
+    sut.id = nil
+    // When
+    sut.getMovieData(request: request)
+    // Then
+    XCTAssertFalse(spyPresenter.presentMovieDataCelled)
+  }
+  
   func testCalculateVoteSuccess() {
     // Given
     let spyPresenter = SpyDetailPresenter()
@@ -92,19 +107,30 @@ class DetailInteractorTests: XCTestCase {
     let spyWorker = SpyDetailWorker(store: MovieRestStore())
     sut.worker = spyWorker
     
-    sut.id = "\(11)"
-    sut.voteCount = sut.selectedMovie?.voteCount
-    sut.voteAvg = sut.selectedMovie?.voteAverage
-    
-    let requestData = Detail.GetMovieData.Request()    
+    sut.selectedMovie = DetailModel(adult: false, backdropPath: "", belongsToCollection: nil, budget: 0, genres: [Genre(id: 1, name: "Comedy")], homepage: "", id: 11, imdbID: "", originalLanguage: "", originalTitle: "Discolocos", overview: "The high energy movement in Mexico", popularity: 2.0, posterPath: "", productionCompanies: nil, productionCountries: nil, releaseDate: "2016-12-31", revenue: 0, runtime: 101, spokenLanguages: [SpokenLanguage(iso639_1: "EN", name: "English")], status: "Released", tagline: "", title: "Discolocos", video: false, voteAverage: 4, voteCount: 1)
+    sut.id = "\(String(describing: sut.selectedMovie?.id))"
     let request = Detail.SetVote.Request(voteUser: 5)
     // When
-    sut.getMovieData(request: requestData)
     sut.calculateVote(request: request)
-//    print(sut.selectedMovie?)
     // Then
     XCTAssertEqual(sut.selectedStar, 5)
     XCTAssertEqual(sut.newVote, 3.5)
   }
   
+  func testCalculateVoteIfIdIsNil() {
+    // Given
+    let spyPresenter = SpyDetailPresenter()
+    sut.presenter = spyPresenter
+    let spyWorker = SpyDetailWorker(store: MovieRestStore())
+    sut.worker = spyWorker
+    
+    sut.id = nil
+    let request = Detail.SetVote.Request(voteUser: 5)
+    // When
+    sut.calculateVote(request: request)
+    //    print(sut.selectedMovie?)
+    // Then
+    XCTAssertEqual(sut.voteCount, nil)
+    XCTAssertEqual(sut.voteAvg, nil)
+  }
 }

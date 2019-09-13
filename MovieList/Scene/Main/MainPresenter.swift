@@ -22,7 +22,6 @@ class MainPresenter: MainPresenterInterface {
     switch response.result {
     case .success(let data):
       let voteResult = UserDefaults.standard.object(forKey: "voteByUser") as? [String: Double]
-      print(voteResult ?? 0)
         viewModel = data.map {
           var voteAvg = $0.voteAverage / 2
           if let vote = voteResult?["\($0.id)"] {

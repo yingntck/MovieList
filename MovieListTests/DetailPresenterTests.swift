@@ -66,7 +66,7 @@ class DetailPresenterTests: XCTestCase {
     XCTAssert(spyDetailView.displayMovieDataCalled)
   }
   
-  func testGetMovieDataIfCategoryArrayIsNull() {
+  func testGetMovieDataIfCategoryArrayIsNil() {
     // Given
     let spyDetailView = SpyDetailView()
     sut.viewController = spyDetailView
